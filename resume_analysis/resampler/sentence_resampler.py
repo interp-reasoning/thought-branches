@@ -1,32 +1,23 @@
-from pprint import pprint
-import sys
+import asyncio
 import os
+import re
+import sys
+from collections import defaultdict
+from dataclasses import dataclass, field
+from pprint import pprint
+from typing import List
+
+from pkld import pkld
+from rollouts import RolloutsClient
+from tqdm import tqdm
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from resampler.sentence_splitter import (
     split_into_paragraphs,
+    split_into_paragraphs_safe,
     string_to_sentences,
 )
-from resampler.sentence_splitter import split_into_paragraphs_safe
-
-# Add parent directory to path to allow imports when running directly
-
-from pkld import pkld
-
-# from resampler.base_generator import (
-#     get_prompt_responses,
-#     limited_async_gather,
-# )
-# from resampler.generate_chunk_rollouts_openrouter_seed import generate_multiple_responses_openrouter
-from tqdm import tqdm
-from collections import defaultdict
-import asyncio
-import re
-from typing import List
-from rollouts import RolloutsClient
-
-from dataclasses import dataclass, field
 
 
 def clean_python_string_literal(text: str) -> str:

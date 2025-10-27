@@ -1,5 +1,7 @@
-import numpy as np
 from typing import List, Tuple
+
+import numpy as np
+
 from BERT.BERT_core_gpu import get_bert_embedding, get_bert_embeddings_batch
 
 

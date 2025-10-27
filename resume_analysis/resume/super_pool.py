@@ -1,27 +1,25 @@
-import sys
 import os
 import pickle
+import sys
+from collections import Counter, defaultdict
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
+from scipy import stats
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import pandas as pd
-
-from collections import defaultdict
 from resampler.sentence_resampler import ResampleSentence
 from resampler.weighted_kmeans import get_cluster_mappers
 from resume.gen_resume_data import (
     agg_multiple_variants,
-    get_yes_no,
-    merge_w_mirror,
     collapse_sentence2data,
     contrast_new_v_original,
+    get_yes_no,
+    merge_w_mirror,
     rando_drop_to_equalize,
 )
-import numpy as np
-from collections import Counter
-from scipy import stats
 
 
 def cnt_variant(sentence2data):

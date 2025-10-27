@@ -1,11 +1,12 @@
-import sys
 import os
+import sys
 import warnings
+
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 from scipy import stats
+from sklearn.linear_model import LinearRegression
 
 # Suppress warnings
 warnings.filterwarnings("ignore")

@@ -1,7 +1,8 @@
 import re
-from typing import List, Tuple
-from pkld import pkld
 from functools import cache
+from typing import List, Tuple
+
+from pkld import pkld
 
 
 def clean_python_string_literal(text: str) -> str:

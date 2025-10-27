@@ -1,10 +1,11 @@
-import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import sys
 
-from pyprocessmacro import Process
-import pandas as pd
 import numpy as np
+import pandas as pd
+from pyprocessmacro import Process
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 if __name__ == "__main__":
     N_CLUSTERS = 16

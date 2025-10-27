@@ -1,25 +1,21 @@
-import sys
 import os
+import random
+import sys
+from collections import defaultdict
+from dataclasses import dataclass
+from pprint import pprint
+from time import time
 
+import numpy as np
+from pkld import pkld
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
-from resume.name_standardize import clean_name_from_str
-
-
-from base_responses import get_case_responses
-from resampler.sentence_resampler import mad_resample
 from BERT.BERT_embedding_cache import get_bert_embeddings_cached
+from base_responses import get_case_responses
+from resampler.sentence_resampler import ResampleSentence, mad_resample
 from resampler.weighted_kmeans import get_cluster_mappers
-from time import time
-import numpy as np
-from dataclasses import dataclass
-from pprint import pprint
-import random
-from resampler.sentence_resampler import ResampleSentence
-from collections import defaultdict
-from pkld import pkld
+from resume.name_standardize import clean_name_from_str
 
 
 DO_PARAGRAPHS = False

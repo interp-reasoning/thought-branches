@@ -1,27 +1,21 @@
-from collections import defaultdict
 import json
-import sys
 import os
+import sys
+from collections import defaultdict
 
+import numpy as np
+from pkld import pkld
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.utils import check_random_state
 from tqdm import tqdm
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from BERT.BERT_embedding_cache import get_bert_embeddings_cached
 from resampler.sentence_splitter import (
     split_into_paragraphs_safe,
     string_to_sentences,
 )
-
-
-# Add parent directory to path to allow imports when running directly
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import os
-import numpy as np
-from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.utils import check_random_state
-
-# from resampler.BERT_core_cached import get_bert_embeddings_batch_cached
-from pkld import pkld
 
 # from resampler.sentence_splitter import split_into_paragraphs_safe, string_to_sentences
 

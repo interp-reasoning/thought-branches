@@ -5,9 +5,9 @@ No classes, no complexity, just functions that work
 """
 
 import json
+import os
 import random
 from pathlib import Path
-import os
 
 
 def load_job_description(job_name="meta"):

@@ -5,13 +5,12 @@ Analyze all resumes with all job/variant combinations using efficient async/awai
 
 import asyncio
 import json
+import logging
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Tuple
-import logging
+from typing import Dict, List, Tuple
 
-# from generate_chunk_rollouts_openrouter_seed import call_generate_openrouter
 from simple_prompt_maker import get_resume_by_id, make_prompts_for_resume_group
 
 if __name__ == "__main__":

@@ -4,13 +4,14 @@ GPU-enabled BERT embeddings with automatic caching using pkld decorator.
 Uses the last hidden layer and [CLS] token for sentence embeddings.
 """
 
-from tqdm import tqdm
-import torch
-import numpy as np
-from transformers import AutoTokenizer, AutoModel
-from typing import List, Union, Tuple
-from pkld import pkld
 import logging
+from typing import List, Tuple, Union
+
+import numpy as np
+import torch
+from pkld import pkld
+from tqdm import tqdm
+from transformers import AutoModel, AutoTokenizer
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

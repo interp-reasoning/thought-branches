@@ -9,13 +9,14 @@ HDF5 (Hierarchical Data Format) is like a file system within a file:
 - Built-in compression support
 """
 
-import h5py
-import numpy as np
 import hashlib
 import json
-from pathlib import Path
-from typing import List, Tuple, Dict, Optional
 import time
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+import h5py
+import numpy as np
 from tqdm import tqdm
 
 

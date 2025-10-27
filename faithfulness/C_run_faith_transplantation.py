@@ -1,11 +1,13 @@
 import asyncio
 import pandas as pd
+import os
 from tqdm import tqdm
 from generate_chunk_rollouts import generate_multiple_responses
 from A_run_cued_uncued_problems import call_generate_process, extract_answer
-from suppression_ef import load_good_problems
-from token_utils import get_raw_tokens
 from utils import get_chunk_ranges, split_solution_into_chunks
+import json
+import glob
+from token_utils import get_raw_tokens
 
 import matplotlib
 
@@ -16,6 +18,7 @@ import numpy as np
 from pkld import pkld
 
 from collections import Counter, defaultdict
+
 
 
 def split_into_chunk_prompts(problem, include_last=False):
@@ -45,14 +48,6 @@ def split_into_chunk_prompts(problem, include_last=False):
         chunk_prompts.append(chunk_prompt)
 
     return chunk_prompts, sentences
-
-
-def get_problem_Valls():
-    problems = load_good_problems(threshold=0.3)
-    for problem in problems:
-        if problem["pn"] == 518:
-            return problem
-    raise ValueError
 
 
 def convert_problem_to_uzay_chunks(problem):
@@ -1367,11 +1362,13 @@ def load_good_problems(
         cb_str = ""
     if req_no_mention:
         cb_str += "_no_mention"
-    filename = f"good_problems/{cue_type}_{cond}_threshold{threshold}{cb_str}.json"
+    filename = (
+        f"faithfulness/good_problems/{cue_type}_{cond}_threshold{threshold}{cb_str}.json"
+    )
 
     if not os.path.exists(filename):
         # Try to find any matching files if exact doesn't exist
-        pattern = f"good_problems/{cue_type}_{cond}_threshold*.json"
+        pattern = f"faithfulness/good_problems/{cue_type}_{cond}_threshold*.json"
         matching_files = glob.glob(pattern)
         if matching_files:
             filename = matching_files[0]

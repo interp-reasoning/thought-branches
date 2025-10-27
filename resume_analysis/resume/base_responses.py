@@ -1,29 +1,20 @@
 import asyncio
-from collections import Counter, defaultdict
+import copy
 import random
 import time
+from collections import Counter, defaultdict
+from pprint import pprint
+
+import numpy as np
+import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib.colors import LogNorm
-import pandas as pd
-
-# from BERT_core import get_bert_embedding
-from analyze_all_resumes import get_variant_info
-from pprint import pprint
+from pkld import pkld
+from rollouts import RolloutsClient
 from tqdm import tqdm
 
-# from sentence_splitter import string_to_sentences
-import copy
-
-# from openai_core import (
-#     get_openai_embedding,
-#     get_openai_embedding_async,
-#     get_openai_embeddings_batch,
-# )
-import numpy as np
-from pkld import pkld
-
-from simple_prompt_maker import make_prompts_for_resume_group, get_resume_by_id
-from rollouts import RolloutsClient
+from analyze_all_resumes import get_variant_info
+from simple_prompt_maker import get_resume_by_id, make_prompts_for_resume_group
 
 
 # @pkld(overwrite=False)

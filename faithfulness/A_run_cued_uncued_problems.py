@@ -10,8 +10,6 @@ from generate_chunk_rollouts import call_generate
 from pkld import pkld
 import matplotlib.pyplot as plt
 
-from token_utils import get_raw_tokens
-
 
 def load_chua_csv():
     fp = "Chua_faithfulness_results.csv"

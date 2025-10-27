@@ -1,9 +1,9 @@
-import sys
-import os
-import numpy as np
 import asyncio
-from rollouts import RolloutsClient
+import os
+import sys
 
+import numpy as np
+from rollouts import RolloutsClient
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

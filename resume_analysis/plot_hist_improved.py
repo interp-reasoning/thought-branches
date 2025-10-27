@@ -1,19 +1,17 @@
-import sys
 import os
 import pickle
+import sys
 from pathlib import Path
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import pandas as pd
-import matplotlib.pyplot as plt
 import matplotlib
-import seaborn as sns
-import os
-import sys
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import scipy.stats as stats
+import seaborn as sns
 from scipy.optimize import curve_fit
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Set font size globally - use default DejaVu Sans
 matplotlib.rc("font", size=14)
