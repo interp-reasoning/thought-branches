@@ -32,7 +32,6 @@ IMPORTANCE_METRICS = [
     # "resampling_importance_logodds",
     # "resampling_importance_category_kl",
     # "resampling_importance_resistance_kl",
-    # "counterfactual_importance_kl", 
     # "counterfactual_importance_logodds",
     # "counterfactual_importance_category_kl",
     # "counterfactual_importance_resistance_kl",
@@ -45,6 +44,10 @@ IMPORTANCE_METRICS = [
     "counterfactual_importance_whistleblowing_rate", 
     # Counterfactual++ (fight-back vs next-chunk base), whistleblowing-rate based
     "counterfactual_plusplus_importance_whistleblowing_rate",
+    # Counterfactual, KL divergence based
+    "counterfactual_importance_kl",
+    # Counterfactual++ (fight-back vs next-chunk base), KL divergence based
+    "counterfactual_plusplus_importance_kl",
 ]
 
 # Define consistent category colors to use across all plots (aligned with prompts.py)
@@ -61,7 +64,7 @@ CATEGORY_COLORS = {
 }
 
 # Exclude only non-informative bucket
-categories_to_exclude = ["Other", "Final Action"]
+categories_to_exclude = ["Other", "Stakeholder Impact", "Consequence Analysis"]
 
 def format_category_name(tag: str) -> str:
     """Normalize raw tag labels to Title Case with spaces.
@@ -365,12 +368,7 @@ def collect_tag_data(df_metrics=None, rollouts_dir="whistleblower_rollouts/llama
                 for metric in IMPORTANCE_METRICS:
                     # Fold CF++ aliases into canonical metric name
                     if metric == "counterfactual_plusplus_importance_whistleblowing_rate":
-                        aliases = [
-                            "counterfactual_plusplus_importance_whistleblowing_rate",
-                            "counterfactual_plusplus_importance",
-                            "counterfactual_importance_cfpp",
-                            "cfpp_importance",
-                        ]
+                        aliases = [ "counterfactual_plusplus_importance_whistleblowing_rate"]
                         val = np.nan
                         for k in aliases:
                             if k in chunk and chunk.get(k) is not None:

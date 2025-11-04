@@ -234,6 +234,7 @@ parser.add_argument('--pool_max_chars', type=int, default=12000, help='Max chara
 parser.add_argument('--pool_split_timeout', type=float, default=1, help='Timeout seconds for limited splitting when collecting multiple sentences')
 parser.add_argument('--embedding_device', type=str, default='cuda', choices=['cpu', 'cuda', 'auto'], help='Device to run sentence embeddings on (cpu recommended to save GPU memory)')
 parser.add_argument('--embedding_batch_size', type=int, default=4096, help='Batch size for sentence embeddings (larger is faster but uses more memory)')
+parser.add_argument('-fd', '--fast_deepseek', default=False, action='store_true', help='Use fast DeepSeek models')
 args = parser.parse_args()
 
 # Resolve provider model ID from model folder
@@ -243,7 +244,7 @@ def resolve_provider_model_id(model_folder: str, provider: str) -> str:
     base_map = {
         'llama-3_1-nemotron-ultra-253b-v1': 'nvidia/Llama-3_1-Nemotron-Ultra-253B-v1',
         'hermes-4-70b': 'NousResearch/Hermes-4-70B',
-        'deepseek-r1-0528': 'deepseek-ai/DeepSeek-R1-0528',
+        'deepseek-r1-0528': 'deepseek-ai/DeepSeek-R1-0528-fast' if args.fast_deepseek else 'deepseek-ai/DeepSeek-R1-0528',
     }
     resolved = base_map.get(folder, model_folder)
     # Provider-specific tweaks if needed (keep minimal; providers often accept the base IDs)

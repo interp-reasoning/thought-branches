@@ -93,15 +93,19 @@ DISRUPTION_LIBRARY_WB: Dict[str, str] = _load_disruption_library_from_source()
 DEFAULT_TEMPERATURE = 0.7
 DEFAULT_TOP_P = 0.95
 MODEL_FOLDER_TO_HF = {
-    'llama-3_1-nemotron-ultra-253b-v1': 'nvidia/Llama-3_1-Nemotron-Ultra-253B-v1',
+    'qwq-32b': 'Qwen/QwQ-32B',
     'hermes-4-70b': 'NousResearch/Hermes-4-70B',
+    'qwen3-235b-a22b': 'Qwen/Qwen3-235B-A22B',
+    'llama-3_1-nemotron-ultra-253b-v1': 'nvidia/Llama-3_1-Nemotron-Ultra-253B-v1',
     'deepseek-r1-0528': 'deepseek-ai/DeepSeek-R1-0528',
 }
 
 # Provider model IDs for Nebius API (best-effort mapping)
 MODEL_FOLDER_TO_NEBIUS = {
-    'llama-3_1-nemotron-ultra-253b-v1': 'nvidia/Llama-3_1-Nemotron-Ultra-253B-v1',
+    'qwq-32b': 'Qwen/QwQ-32B',
     'hermes-4-70b': 'NousResearch/Hermes-4-70B',
+    'qwen3-235b-a22b': 'Qwen/Qwen3-235B-A22B-Instruct-2507',
+    'llama-3_1-nemotron-ultra-253b-v1': 'nvidia/Llama-3_1-Nemotron-Ultra-253B-v1',
     'deepseek-r1-0528': 'deepseek-ai/DeepSeek-R1-0528',
 }
 
@@ -122,6 +126,47 @@ def load_json(path: Path) -> Optional[Dict[str, Any]]:
             return json.load(f)
     except Exception:
         return None
+
+
+def save_json(path: Path, data: Dict[str, Any]) -> None:
+    try:
+        ensure_dir(path.parent)
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(data, f)
+    except Exception:
+        pass
+
+
+# ------------------------------
+# Logprobs caching
+# ------------------------------
+
+import hashlib
+
+def _hash_text(text: str) -> str:
+    """Generate a short hash for text to use in cache keys."""
+    return hashlib.sha256(text.encode('utf-8')).hexdigest()[:16]
+
+
+def get_cache_path(model_folder: str, prefix_text: str, sentence_text: str) -> Path:
+    """Generate cache path for a specific logprobs computation."""
+    prefix_hash = _hash_text(prefix_text)
+    sentence_hash = _hash_text(sentence_text)
+    cache_dir = Path('analysis') / 'onpolicy_distribution' / 'cache' / model_folder
+    cache_file = cache_dir / f"{prefix_hash}_{sentence_hash}.json"
+    return cache_file
+
+
+def load_cached_logprobs(model_folder: str, prefix_text: str, sentence_text: str) -> Optional[Dict[str, Any]]:
+    """Load cached logprobs if available."""
+    cache_path = get_cache_path(model_folder, prefix_text, sentence_text)
+    return load_json(cache_path)
+
+
+def save_cached_logprobs(model_folder: str, prefix_text: str, sentence_text: str, logprobs_data: Dict[str, Any]) -> None:
+    """Save logprobs to cache."""
+    cache_path = get_cache_path(model_folder, prefix_text, sentence_text)
+    save_json(cache_path, logprobs_data)
 
 
 def list_scenarios(input_dir: Path) -> List[Path]:
@@ -316,12 +361,18 @@ def load_model_and_tokenizer(model_name: str, device: str = 'cuda:0', quantize_4
 
 
 @torch.no_grad()
-def compute_token_logprobs(bundle: HFModelBundle, prefix_text: str, sentence_text: str) -> Dict[str, Any]:
+def compute_token_logprobs(bundle: HFModelBundle, prefix_text: str, sentence_text: str, model_folder: Optional[str] = None, use_cache: bool = True) -> Dict[str, Any]:
     """Compute per-token logprobs for sentence_text given prefix_text using teacher forcing.
 
     Robust to accelerate device_map=auto by keeping inputs on CPU; accelerate handles dispatch.
     Returns tokens, token_ids, per-token logprobs, sum, and mean.
     """
+    # Check cache first
+    if use_cache and model_folder is not None:
+        cached = load_cached_logprobs(model_folder, prefix_text, sentence_text)
+        if cached is not None:
+            return cached
+    
     tokenizer = bundle.tokenizer
     model = bundle.model
 
@@ -333,13 +384,16 @@ def compute_token_logprobs(bundle: HFModelBundle, prefix_text: str, sentence_tex
     token_ids: List[int] = ids_target['input_ids'][0].tolist()
     tokens: List[str] = tokenizer.convert_ids_to_tokens(token_ids)
     if target_len <= 0:
-        return {
+        result = {
             'tokens': tokens,
             'token_ids': token_ids,
             'logprobs': [],
             'logprob_sum': 0.0,
             'logprob_mean': 0.0,
         }
+        if use_cache and model_folder is not None:
+            save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+        return result
 
     input_ids = torch.cat([ids_prefix['input_ids'], ids_target['input_ids']], dim=1)
     attn = torch.cat([ids_prefix['attention_mask'], ids_target['attention_mask']], dim=1)
@@ -393,13 +447,16 @@ def compute_token_logprobs(bundle: HFModelBundle, prefix_text: str, sentence_tex
             lp = float(step[0, 0, tok].detach().cpu().item())
             logprobs.append(lp)
         arr = np.array(logprobs, dtype=float)
-        return {
+        result = {
             'tokens': tokens,
             'token_ids': token_ids,
             'logprobs': logprobs,
             'logprob_sum': float(arr.sum()) if arr.size > 0 else 0.0,
             'logprob_mean': float(arr.mean()) if arr.size > 0 else 0.0,
         }
+        if use_cache and model_folder is not None:
+            save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+        return result
 
     sel_logits = shift_logits[:, start:end, :].to(torch.float32)
     sel_labels = shift_labels[:, start:end]
@@ -424,7 +481,7 @@ def compute_token_logprobs(bundle: HFModelBundle, prefix_text: str, sentence_tex
             logprobs.append(lp)
         arr = np.array(logprobs, dtype=float)
 
-    return {
+    result = {
         'tokens': tokens,
         'token_ids': token_ids,
         'logprobs': logprobs,
@@ -433,6 +490,9 @@ def compute_token_logprobs(bundle: HFModelBundle, prefix_text: str, sentence_tex
         'scored_token_count': int(arr.size),
         'total_token_count': int(len(logprobs)),
     }
+    if use_cache and model_folder is not None:
+        save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+    return result
 
 
 # ------------------------------
@@ -523,6 +583,7 @@ def compute_token_logprobs_nebius(
     verbose: bool = False,
     suffix_text: str = "",
     context_info: Optional[Dict[str, Any]] = None,
+    use_cache: bool = True,
 ) -> Dict[str, Any]:
     """Compute per-token logprobs for sentence_text given prefix via Nebius API.
 
@@ -539,6 +600,12 @@ def compute_token_logprobs_nebius(
         intended token's logprob. Ensure we do not silently drop tokens by
         recording a conservative fallback for any missed token.
     """
+    # Check cache first
+    if use_cache:
+        cached = load_cached_logprobs(model_folder, prefix_text, sentence_text)
+        if cached is not None:
+            return cached
+    
     # Resolve HF id for display/remote scoring
     first_model = next(iter(MODEL_FOLDER_TO_HF.values()))
     hf_id = MODEL_FOLDER_TO_HF.get(model_folder, first_model)
@@ -549,7 +616,10 @@ def compute_token_logprobs_nebius(
             tok = AutoTokenizer.from_pretrained(hf_id, trust_remote_code=True)
             tokenizer_cache[hf_id] = tok
         except Exception:
-            return {'tokens': [], 'token_ids': [], 'logprobs': [], 'logprob_sum': 0.0, 'logprob_mean': 0.0}
+            result = {'tokens': [], 'token_ids': [], 'logprobs': [], 'logprob_sum': 0.0, 'logprob_mean': 0.0}
+            if use_cache:
+                save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+            return result
 
     # Tokenize target locally to return token list for reference (not required by provider)
     ids_target = tok(sentence_text, add_special_tokens=False, return_tensors='pt')
@@ -595,7 +665,10 @@ def compute_token_logprobs_nebius(
             
             if not full_top_lps or not full_tokens:
                 logger.debug(f"No top_logprobs returned from API for sentence: {sentence_text[:50]}")
-                return {'tokens': tokens, 'token_ids': token_ids, 'logprobs': [], 'logprob_sum': float('nan'), 'logprob_mean': float('nan'), 'scored_token_count': 0, 'total_token_count': 0}
+                result = {'tokens': tokens, 'token_ids': token_ids, 'logprobs': [], 'logprob_sum': float('nan'), 'logprob_mean': float('nan'), 'scored_token_count': 0, 'total_token_count': 0}
+                if use_cache:
+                    save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+                return result
 
             # Sliding window token matching (same as test_logprob_extraction.py)
             def normalize_token(tok: str) -> str:
@@ -746,7 +819,7 @@ def compute_token_logprobs_nebius(
             # If we found a match, return it
             if start_idx is not None and sentence_logprobs_list:
                 arr = np.array(sentence_logprobs_list, dtype=float)
-                return {
+                result = {
                     'tokens': tokens,
                     'token_ids': token_ids,
                     'logprobs': sentence_logprobs_list,
@@ -755,6 +828,9 @@ def compute_token_logprobs_nebius(
                     'scored_token_count': int(arr.size),
                     'total_token_count': int(len(sentence_tokens_list)),
                 }
+                if use_cache:
+                    save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+                return result
             else:
                 # Could not match even with stripping - warn with context and save debug data
                 ctx = context_info or {}
@@ -783,7 +859,10 @@ def compute_token_logprobs_nebius(
                 except Exception:
                     pass
                 
-                return {'tokens': tokens, 'token_ids': token_ids, 'logprobs': [], 'logprob_sum': float('nan'), 'logprob_mean': float('nan'), 'scored_token_count': 0, 'total_token_count': 0}
+                result = {'tokens': tokens, 'token_ids': token_ids, 'logprobs': [], 'logprob_sum': float('nan'), 'logprob_mean': float('nan'), 'scored_token_count': 0, 'total_token_count': 0}
+                if use_cache:
+                    save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+                return result
     except Exception as e:
         logger.warning(f"Nebius prompt-logprob scoring (echo) failed: {type(e).__name__}: {e}")
 
@@ -857,7 +936,7 @@ def compute_token_logprobs_nebius(
         running = running + (tokens[i] if isinstance(tokens[i], str) else piece_text)
 
     arr = np.array(out_lps, dtype=float)
-    return {
+    result = {
         'tokens': tokens,
         'token_ids': token_ids,
         'logprobs': out_lps,
@@ -866,6 +945,9 @@ def compute_token_logprobs_nebius(
         'scored_token_count': int(arr.size),
         'total_token_count': int(len(tokens)),
     }
+    if use_cache:
+        save_cached_logprobs(model_folder, prefix_text, sentence_text, result)
+    return result
 
 
 # ------------------------------
@@ -1289,6 +1371,7 @@ def collect_distribution_points(
             tasks_local = list(pending_remote)
             pending_remote.clear()
             try:
+                use_cache = not bool(globals().get('overwrite_cache', False))
                 with ThreadPoolExecutor(max_workers=max(1, int(min(nebius_concurrency, 32)))) as ex:
                     results = list(ex.map(
                         lambda t: compute_token_logprobs_nebius(
@@ -1299,6 +1382,7 @@ def collect_distribution_points(
                             nebius_api_key,
                             timeout_seconds=int(globals().get('neb_timeout_seconds', 180)),
                             context_info=t.get('meta'),
+                            use_cache=use_cache,
                         ),
                         tasks_local,
                     ))
@@ -1429,7 +1513,8 @@ def collect_distribution_points(
                         queue_remote_point(prefill, base_sentence, meta)
                     else:
                         try:
-                            lp_base = compute_token_logprobs(bundle, prefill, base_sentence)
+                            use_cache = not bool(globals().get('overwrite_cache', False))
+                            lp_base = compute_token_logprobs(bundle, prefill, base_sentence, model_folder=model_folder, use_cache=use_cache)
                         except Exception:
                             lp_base = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                         try_append_point({
@@ -1478,7 +1563,8 @@ def collect_distribution_points(
                         queue_remote_point(prefill, intervention_sentence, meta)
                     else:
                         try:
-                            lp_on = compute_token_logprobs(bundle, prefill, intervention_sentence)
+                            use_cache = not bool(globals().get('overwrite_cache', False))
+                            lp_on = compute_token_logprobs(bundle, prefill, intervention_sentence, model_folder=model_folder, use_cache=use_cache)
                         except Exception:
                             lp_on = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                         try_append_point({
@@ -1539,7 +1625,8 @@ def collect_distribution_points(
                             queue_remote_point(prefill_off, disruption_text, meta)
                         else:
                             try:
-                                lp_off = compute_token_logprobs(bundle, prefill_off, disruption_text)
+                                use_cache = not bool(globals().get('overwrite_cache', False))
+                                lp_off = compute_token_logprobs(bundle, prefill_off, disruption_text, model_folder=model_folder, use_cache=use_cache)
                             except Exception:
                                 lp_off = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                             try_append_point({
@@ -1618,7 +1705,8 @@ def collect_distribution_points(
                             queue_remote_point(prefillf, intervention_sentence_f, meta)
                         else:
                             try:
-                                lp_fixed = compute_token_logprobs(bundle, prefillf, intervention_sentence_f)
+                                use_cache = not bool(globals().get('overwrite_cache', False))
+                                lp_fixed = compute_token_logprobs(bundle, prefillf, intervention_sentence_f, model_folder=model_folder, use_cache=use_cache)
                             except Exception:
                                 lp_fixed = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                             try_append_point({
@@ -1688,7 +1776,8 @@ def collect_distribution_points(
                         queue_remote_point(prefill2, disruption_text2, meta)
                     else:
                         try:
-                            lp_off2 = compute_token_logprobs(bundle, prefill2, disruption_text2)
+                            use_cache = not bool(globals().get('overwrite_cache', False))
+                            lp_off2 = compute_token_logprobs(bundle, prefill2, disruption_text2, model_folder=model_folder, use_cache=use_cache)
                         except Exception:
                             lp_off2 = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                         try_append_point({
@@ -1755,7 +1844,8 @@ def collect_distribution_points(
                         queue_remote_point(prefill3, disruption_text3, meta)
                     else:
                         try:
-                            lp_cross = compute_token_logprobs(bundle, prefill3, disruption_text3)
+                            use_cache = not bool(globals().get('overwrite_cache', False))
+                            lp_cross = compute_token_logprobs(bundle, prefill3, disruption_text3, model_folder=model_folder, use_cache=use_cache)
                         except Exception:
                             lp_cross = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                         try_append_point({
@@ -1820,7 +1910,8 @@ def collect_distribution_points(
                             queue_remote_point(prefilla, best_sentence, meta)
                         else:
                             try:
-                                lp_agent = compute_token_logprobs(bundle, prefilla, best_sentence)
+                                use_cache = not bool(globals().get('overwrite_cache', False))
+                                lp_agent = compute_token_logprobs(bundle, prefilla, best_sentence, model_folder=model_folder, use_cache=use_cache)
                             except Exception:
                                 lp_agent = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                             try_append_point({
@@ -1887,7 +1978,8 @@ def collect_distribution_points(
                         queue_remote_point(prefill4, disruption_text4, meta)
                 else:
                     try:
-                        lp_same = compute_token_logprobs(bundle, prefill4, disruption_text4)
+                        use_cache = not bool(globals().get('overwrite_cache', False))
+                        lp_same = compute_token_logprobs(bundle, prefill4, disruption_text4, model_folder=model_folder, use_cache=use_cache)
                     except Exception:
                         lp_same = {'logprob_mean': 0.0, 'logprob_sum': 0.0, 'tokens': [], 'token_ids': [], 'logprobs': [], 'scored_token_count': 0, 'total_token_count': 0}
                     try_append_point({
@@ -1965,8 +2057,26 @@ def plot_distribution_scatter(df: pd.DataFrame, out_path: Path, display_model: s
     if df_local.empty:
         print('[dist] No data to plot after min_logprob filter.')
         return
-    plt.figure(figsize=(12, 7))
+    
+    # Filter out points with mean_logprob < -8
+    if 'mean_logprob' in df_local.columns:
+        df_local = df_local[pd.to_numeric(df_local['mean_logprob'], errors='coerce') >= -8.0]
+    if df_local.empty:
+        print('[dist] No data to plot after -8 logprob filter.')
+        return
+    
+    plt.figure(figsize=(12, 8))
     sns.set_style('white')
+    
+    # Increase font sizes for scatter plots to match boxplots
+    plt.rcParams.update({
+        'axes.labelsize': 19,
+        'xtick.labelsize': 17,
+        'ytick.labelsize': 17,
+        'legend.fontsize': 14,
+        'axes.titlesize': 22,
+    })
+    
     ax = plt.gca()
     # Original color scheme by type
     palette = {
@@ -2118,11 +2228,14 @@ def plot_distribution_scatter(df: pd.DataFrame, out_path: Path, display_model: s
             shapes_by_model[mf] = model_markers_default[next_i % len(model_markers_default)]
             next_i += 1
     for (stype, mf), sub in df_plot.groupby(['viz_type', 'model_folder']):
+        # Increase marker size for deepseek star
+        base_size = viz_sizes.get(stype, 24)
+        marker_size = base_size * 2.0 if str(mf) == 'deepseek-r1-0528' else base_size
         plt.scatter(
             sub['mean_logprob'].astype(float).values,
             sub[y_col].astype(float).values,
             alpha=0.55,
-            s=viz_sizes.get(stype, 24),
+            s=marker_size,
             c=viz_palette.get(stype, '#7f7f7f'),
             marker=shapes_by_model.get(str(mf), 'o'),
             edgecolors='none',
@@ -2151,10 +2264,19 @@ def plot_distribution_scatter(df: pd.DataFrame, out_path: Path, display_model: s
     except Exception:
         trend_r2 = None
     # plt.xlabel(f'Mean token logprob under {display_model}')
-    plt.xlabel(f'Mean token logprob')
-    ylabel = '| Δ Whistleblowing rate (after − before) |' if abs_value else 'Δ Whistleblowing rate (after − before)'
+    plt.xlabel(f'Mean token logprob\n\n')
+    ylabel = '| Δ Whistleblow rate (after − before) |' if abs_value else 'Δ Whistleblow rate (after − before)'
     plt.ylabel(ylabel)
-    plt.title(title_override or f'Sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblowing')
+    plt.title(title_override or f'Sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblow\n')
+    
+    # Set consistent y-axis limits and ticks for comparability across datasets (with padding)
+    plt.ylim(-1.05, 0.65)
+    plt.yticks([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6])
+    
+    # Set consistent x-axis limits and ticks
+    plt.xlim(-8.5, 0.5)
+    plt.xticks([-8, -6, -4, -2, 0])
+    
     # Dual legends: match shared plot
     from matplotlib.lines import Line2D  # local import
     present_types = [t for t in df_plot['viz_type'].dropna().unique()]
@@ -2169,15 +2291,23 @@ def plot_distribution_scatter(df: pd.DataFrame, out_path: Path, display_model: s
             type_handles.append(Line2D([0], [0], linestyle='--', color='#444444', linewidth=2.0, label=f"trendline (R^2={trend_r2:.2f})"))
         except Exception:
             pass
+    # Always show all known models in legend (not just present ones)
+    all_known_models = ['qwq-32b', 'hermes-4-70b', 'qwen3-235b-a22b', 'llama-3_1-nemotron-ultra-253b-v1', 'deepseek-r1-0528']
     model_handles: List[Line2D] = []
-    for mf in present_models:
-        model_handles.append(Line2D([0], [0], marker=shapes_by_model.get(mf, 'o'), linestyle='None', markersize=8,
+    for mf in all_known_models:
+        # Use larger marker for deepseek star
+        marker_size = 12 if mf == 'deepseek-r1-0528' else 8
+        model_handles.append(Line2D([0], [0], marker=shapes_by_model.get(mf, 'o'), linestyle='None', markersize=marker_size,
                                     markerfacecolor='#cccccc', markeredgecolor='#333333', label=mf))
-    leg1 = plt.legend(handles=type_handles, title='Type', loc='lower left')
-    if model_handles and len(present_models) > 1:
-        leg2 = plt.legend(handles=model_handles, title='Model', loc='upper left')
-        ax = plt.gca()
-        ax.add_artist(leg1)
+    # Place legends at the bottom in two lines: Type first, then Model (no titles)
+    # Type legend (first line) - more spacing from x-axis label
+    leg1 = plt.legend(handles=type_handles, loc='upper center', bbox_to_anchor=(0.5, -0.18), 
+                     ncol=len(type_handles), borderaxespad=0., fontsize=14, frameon=False)
+    # Model legend (second line)
+    ax = plt.gca()
+    ax.add_artist(leg1)
+    leg2 = plt.legend(handles=model_handles, loc='upper center', bbox_to_anchor=(0.5, -0.24), 
+                     ncol=len(model_handles), borderaxespad=0., fontsize=14, frameon=False)
     # Remove gridlines and the top/right spines
     ax.grid(False)
     sns.despine(ax=ax, top=True, right=True)
@@ -2294,6 +2424,13 @@ def plot_shared_distribution_scatter(
     if df_plot.empty:
         print('[dist] No data to plot after class balancing filter (shared).')
         return
+    
+    # Filter out points with mean_logprob < -8
+    if 'mean_logprob' in df_plot.columns:
+        df_plot = df_plot[pd.to_numeric(df_plot['mean_logprob'], errors='coerce') >= -8.0]
+    if df_plot.empty:
+        print('[dist] No data to plot after mean_logprob filter.')
+        return
 
     # Colors by type (match main viz)
     color_map = {
@@ -2335,8 +2472,21 @@ def plot_shared_distribution_scatter(
         'baseline_mode': 'baseline',
     }
 
-    plt.figure(figsize=(12, 5))
+    plt.figure(figsize=(12, 8))
+    
+    # Increase font sizes for scatter plots to match boxplots
+    plt.rcParams.update({
+        'axes.labelsize': 19,
+        'xtick.labelsize': 17,
+        'ytick.labelsize': 17,
+        'legend.fontsize': 14,
+        'axes.titlesize': 22,
+    })
+    
     for (stype, mf), sub in df_plot.groupby(['viz_type', 'model_folder']):
+        # Increase marker size for deepseek star
+        base_size = size_map.get(stype, 24)
+        marker_size = base_size * 2.0 if str(mf) == 'deepseek-r1-0528' else base_size
         y_data = sub['delta_whistleblowing_rate'].astype(float).values
         if abs_value:
             y_data = np.abs(y_data)
@@ -2344,7 +2494,7 @@ def plot_shared_distribution_scatter(
             sub['mean_logprob'].astype(float).values,
             y_data,
             alpha=0.55,
-            s=size_map.get(stype, 24),
+            s=marker_size,
             c=color_map.get(stype, '#7f7f7f'),
             marker=shapes_by_model.get(str(mf), 'o'),
             edgecolors='none',
@@ -2374,10 +2524,19 @@ def plot_shared_distribution_scatter(
                 plt.plot(x_line, y_line, linestyle='--', color='#444444', linewidth=1.6, label=(f"trendline (R^2={trend_r2:.2f})" if trend_r2 is not None else 'trendline'))
     except Exception:
         pass
-    plt.xlabel('Mean token logprob')
-    ylabel = '| Δ Whistleblowing rate (after − before) |' if abs_value else 'Δ Whistleblowing rate (after − before)'
+    plt.xlabel('Mean token logprob\n\n')
+    ylabel = '| Δ Whistleblow rate (after − before) |' if abs_value else 'Δ Whistleblow rate (after − before)'
     plt.ylabel(ylabel)
-    plt.title(title_override or 'Sentence insertions vs impact\nDataset: Whistleblowing')
+    plt.title(title_override or 'Sentence insertions vs impact\nDataset: Whistleblow\n')
+    
+    # Set consistent y-axis limits and ticks for comparability across datasets (with padding)
+    plt.ylim(-1.05, 0.65)
+    plt.yticks([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6])
+    
+    # Set consistent x-axis limits and ticks
+    plt.xlim(-8.5, 0.5)
+    plt.xticks([-8, -6, -4, -2, 0])
+    
     # Legends
     from matplotlib.lines import Line2D  # local import
     present_types = [t for t in df_plot['viz_type'].dropna().unique()]
@@ -2386,30 +2545,29 @@ def plot_shared_distribution_scatter(
                markerfacecolor=color_map.get(t, '#7f7f7f'), markeredgecolor='none', label=label_map.get(t, t))
         for t in present_types
     ]
+    # Always show all known models in legend (not just present ones)
+    all_known_models = ['qwq-32b', 'hermes-4-70b', 'qwen3-235b-a22b', 'llama-3_1-nemotron-ultra-253b-v1', 'deepseek-r1-0528']
     model_handles: List[Line2D] = []
-    if 'model_folder' in df_plot.columns:
-        present_models = [str(x) for x in df_plot['model_folder'].dropna().unique()]
-        for mf in present_models:
-            model_handles.append(Line2D([0], [0], marker=shapes_by_model.get(mf, 'o'), linestyle='None', markersize=8,
-                                        markerfacecolor='#cccccc', markeredgecolor='#333333', label=mf))
-    # Place legends outside on the right to avoid overlap; larger fonts for shared plot
+    for mf in all_known_models:
+        # Use larger marker for deepseek star
+        marker_size = 12 if mf == 'deepseek-r1-0528' else 8
+        model_handles.append(Line2D([0], [0], marker=shapes_by_model.get(mf, 'o'), linestyle='None', markersize=marker_size,
+                                    markerfacecolor='#cccccc', markeredgecolor='#333333', label=mf))
+    
     # Merge any existing trendline label from plot into legend entries
     handles_auto, labels_auto = plt.gca().get_legend_handles_labels()
     if handles_auto and labels_auto:
         type_handles = type_handles + handles_auto
-    leg1 = plt.legend(handles=type_handles, title='Type', loc='upper left', bbox_to_anchor=(1.02, 1.0), borderaxespad=0., fontsize=14)
-    try:
-        leg1.get_title().set_fontsize(14)
-    except Exception:
-        pass
-    if model_handles and len(present_models) > 1:
-        leg2 = plt.legend(handles=model_handles, title='Model', loc='upper left', bbox_to_anchor=(1.02, 0.45), borderaxespad=0., fontsize=14)
-        try:
-            leg2.get_title().set_fontsize(14)
-        except Exception:
-            pass
-        ax = plt.gca()
-        ax.add_artist(leg1)
+    
+    # Place legends at the bottom in two lines: Type first, then Model (no titles)
+    # Type legend (first line) - more spacing from x-axis label
+    leg1 = plt.legend(handles=type_handles, loc='upper center', bbox_to_anchor=(0.5, -0.18), 
+                     ncol=len(type_handles), borderaxespad=0., fontsize=14, frameon=False)
+    # Model legend (second line)
+    ax = plt.gca()
+    ax.add_artist(leg1)
+    leg2 = plt.legend(handles=model_handles, loc='upper center', bbox_to_anchor=(0.5, -0.24), 
+                     ncol=len(model_handles), borderaxespad=0., fontsize=14, frameon=False)
     ax = plt.gca()
     ax.grid(False)
     sns.despine(ax=ax, top=True, right=True)
@@ -2422,6 +2580,381 @@ def plot_shared_distribution_scatter(
     except Exception:
         pass
     plt.tight_layout()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(out_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+
+def plot_distribution_boxplot(
+    df: pd.DataFrame,
+    out_path: Path,
+    *,
+    display_model: Optional[str] = None,
+    model_folder: Optional[str] = None,
+    title_override: Optional[str] = None,
+    abs_value: bool = False,
+) -> None:
+    """Create boxplots comparing delta_whistleblowing_rate across methods."""
+    if df.empty:
+        print('[dist] No data to plot (boxplot).')
+        return
+    
+    # Apply global min_logprob filter
+    try:
+        threshold = globals().get('min_logprob_threshold', None)
+    except Exception:
+        threshold = None
+    df_local = df.copy()
+    try:
+        if threshold is not None and 'mean_logprob' in df_local.columns:
+            mlp_series = pd.to_numeric(df_local['mean_logprob'], errors='coerce')
+            df_local = df_local[mlp_series > float(threshold)]
+    except Exception:
+        pass
+    if df_local.empty:
+        print('[dist] No data to plot after min_logprob filter (boxplot).')
+        return
+    
+    # Create viz_type column
+    df_plot = df_local.copy()
+    df_plot['viz_type'] = df_plot['sentence_type'].apply(lambda st: 'resampled' if st in ('onpolicy_inserted', 'onpolicy_fixed') else st)
+    
+    # Filter to only include the methods we want in boxplot
+    methods_to_include = ['resampled', 'offpolicy_handwritten', 'offpolicy_cross_model', 'offpolicy_same_model']
+    df_plot = df_plot[df_plot['viz_type'].isin(methods_to_include)]
+    
+    if df_plot.empty:
+        print('[dist] No data to plot after method filtering (boxplot).')
+        return
+    
+    # Prepare y-axis data
+    if 'delta_whistleblowing_rate' in df_plot.columns:
+        y_data = pd.to_numeric(df_plot['delta_whistleblowing_rate'], errors='coerce')
+        if abs_value:
+            y_data = y_data.abs()
+        df_plot['y_plot'] = y_data
+    else:
+        print('[dist] No delta_whistleblowing_rate column (boxplot).')
+        return
+    
+    # Remove NaN values
+    df_plot = df_plot.dropna(subset=['y_plot'])
+    if df_plot.empty:
+        print('[dist] No valid data after removing NaNs (boxplot).')
+        return
+    
+    # Create figure
+    plt.figure(figsize=(10, 6))
+    sns.set_style('white')
+    
+    # Color mapping
+    color_map = {
+        'resampled': '#d62728',
+        'offpolicy_handwritten': '#1f77b4',
+        'offpolicy_cross_model': '#ff7f0e',
+        'offpolicy_same_model': '#006400',
+    }
+    
+    # Label mapping
+    label_map = {
+        'resampled': 'resampled',
+        'offpolicy_cross_model': 'cross model',
+        'offpolicy_same_model': 'same model',
+        'offpolicy_handwritten': 'handwritten',
+    }
+    
+    # Order the methods for consistent display
+    method_order = ['resampled', 'offpolicy_handwritten', 'offpolicy_cross_model', 'offpolicy_same_model']
+    method_order = [m for m in method_order if m in df_plot['viz_type'].unique()]
+    
+    # Create boxplot
+    positions = list(range(len(method_order)))
+    box_data = [df_plot[df_plot['viz_type'] == m]['y_plot'].values for m in method_order]
+    
+    bp = plt.boxplot(box_data, positions=positions, widths=0.6, patch_artist=True,
+                     showmeans=True, meanline=True,
+                     boxprops=dict(linewidth=1.5),
+                     medianprops=dict(color='black', linewidth=2),
+                     meanprops=dict(color='red', linewidth=2, linestyle='--'),
+                     whiskerprops=dict(linewidth=1.5),
+                     capprops=dict(linewidth=1.5))
+    
+    # Color the boxes
+    for patch, method in zip(bp['boxes'], method_order):
+        patch.set_facecolor(color_map.get(method, '#cccccc'))
+        patch.set_alpha(0.7)
+    
+    # Set x-tick labels
+    plt.xticks(positions, [label_map.get(m, m) for m in method_order])
+    
+    # Labels and title
+    ylabel = '| Δ Whistleblow rate (after − before) |' if abs_value else 'Δ Whistleblow rate (after − before)'
+    plt.ylabel(ylabel)
+    
+    if title_override:
+        plt.title(title_override)
+    elif model_folder:
+        plt.title(f'Comparison of sentence insertion methods\nModel: {model_folder}  Dataset: Whistleblow')
+    else:
+        plt.title('Comparison of sentence insertion methods\nDataset: Whistleblow')
+    
+    # Add horizontal line at y=0 for non-abs plots
+    if not abs_value:
+        plt.axhline(0.0, color='gray', linewidth=1, linestyle='--', alpha=0.5)
+    
+    # Set consistent y-axis limits for comparability across datasets
+    plt.ylim(-1.0, 0.8)
+    
+    # Clean up
+    ax = plt.gca()
+    ax.grid(False)
+    sns.despine(ax=ax, top=True, right=True)
+    plt.tight_layout()
+    
+    # Save
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(out_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+
+def plot_shared_distribution_boxplot(
+    df: pd.DataFrame,
+    out_path: Path,
+    *,
+    title_override: Optional[str] = None,
+    abs_value: bool = False,
+    model_style: str = 'transparency',
+) -> None:
+    """Create grouped boxplots comparing delta_whistleblowing_rate across methods AND models.
+    
+    Args:
+        model_style: Either 'transparency' (varying alpha) or 'hatch' (line patterns)
+    """
+    if df.empty:
+        print('[dist] No data to plot (shared boxplot).')
+        return
+    
+    # Apply global min_logprob filter
+    try:
+        threshold = globals().get('min_logprob_threshold', None)
+    except Exception:
+        threshold = None
+    df_local = df.copy()
+    try:
+        if threshold is not None and 'mean_logprob' in df_local.columns:
+            mlp_series = pd.to_numeric(df_local['mean_logprob'], errors='coerce')
+            df_local = df_local[mlp_series > float(threshold)]
+    except Exception:
+        pass
+    if df_local.empty:
+        print('[dist] No data to plot after min_logprob filter (shared boxplot).')
+        return
+    
+    # Create viz_type column
+    df_plot = df_local.copy()
+    df_plot['viz_type'] = df_plot['sentence_type'].apply(lambda st: 'resampled' if st in ('onpolicy_inserted', 'onpolicy_fixed') else st)
+    
+    # Filter to only include the methods we want in boxplot
+    methods_to_include = ['resampled', 'offpolicy_handwritten', 'offpolicy_cross_model', 'offpolicy_same_model']
+    df_plot = df_plot[df_plot['viz_type'].isin(methods_to_include)]
+    
+    if df_plot.empty:
+        print('[dist] No data to plot after method filtering (shared boxplot).')
+        return
+    
+    # Ensure model_folder column exists
+    if 'model_folder' not in df_plot.columns:
+        print('[dist] No model_folder column (shared boxplot).')
+        return
+    
+    # Prepare y-axis data
+    if 'delta_whistleblowing_rate' in df_plot.columns:
+        y_data = pd.to_numeric(df_plot['delta_whistleblowing_rate'], errors='coerce')
+        if abs_value:
+            y_data = y_data.abs()
+        df_plot['y_plot'] = y_data
+    else:
+        print('[dist] No delta_whistleblowing_rate column (shared boxplot).')
+        return
+    
+    # Remove NaN values
+    df_plot = df_plot.dropna(subset=['y_plot'])
+    if df_plot.empty:
+        print('[dist] No valid data after removing NaNs (shared boxplot).')
+        return
+    
+    # Create figure
+    plt.figure(figsize=(9, 6))
+    sns.set_style('white')
+    
+    # Color mapping for methods
+    method_color_map = {
+        'resampled': '#d62728',
+        'offpolicy_handwritten': '#1f77b4',
+        'offpolicy_cross_model': '#ff7f0e',
+        'offpolicy_same_model': '#006400',
+    }
+    
+    # Label mapping
+    label_map = {
+        'resampled': 'resampled',
+        'offpolicy_cross_model': 'cross model',
+        'offpolicy_same_model': 'same model',
+        'offpolicy_handwritten': 'handwritten',
+    }
+    
+    # Order the methods for consistent display
+    method_order = ['resampled', 'offpolicy_handwritten', 'offpolicy_cross_model', 'offpolicy_same_model']
+    method_order = [m for m in method_order if m in df_plot['viz_type'].unique()]
+    
+    # Get unique models and order by size (smallest to largest)
+    # qwq-32b (32B) < hermes-4-70b (70B) < qwen3-235b-a22b (235B) < llama-3_1-nemotron-ultra-253b-v1 (253B) < deepseek-r1-0528 (671B)
+    model_size_order = {
+        'qwq-32b': 0,
+        'hermes-4-70b': 1,
+        'qwen3-235b-a22b': 2,
+        'llama-3_1-nemotron-ultra-253b-v1': 3,
+        'deepseek-r1-0528': 4,
+    }
+    models_present = list(df_plot['model_folder'].unique())
+    models = sorted(models_present, key=lambda m: model_size_order.get(m, 999))
+    n_models = len(models)
+    
+    # Model visual style maps
+    # Always include all known models in legend, even if not in data
+    all_known_models = ['qwq-32b', 'hermes-4-70b', 'qwen3-235b-a22b', 'llama-3_1-nemotron-ultra-253b-v1', 'deepseek-r1-0528']
+    
+    if model_style == 'hatch':
+        # Hatch patterns matching the existing legend
+        model_hatch_map = {}
+        model_alpha_map = {}
+        for i, model in enumerate(all_known_models):
+            if i == 0:  # qwq-32b
+                model_hatch_map[model] = None  # Solid/no hatch
+            elif i == 1:  # hermes-4-70b
+                model_hatch_map[model] = '..'  # Dots pattern
+            elif i == 2:  # qwen3-235b-a22b
+                model_hatch_map[model] = 'oo'  # Circles pattern
+            elif i == 3:  # llama-3_1-nemotron-ultra-253b-v1
+                model_hatch_map[model] = 'xx'  # Cross-hatch pattern
+            elif i == 4:  # deepseek-r1-0528
+                model_hatch_map[model] = '//'  # Diagonal lines
+            else:
+                model_hatch_map[model] = '||'  # Vertical lines for any additional
+            model_alpha_map[model] = 0.75  # Alpha for box color transparency
+    else:
+        # Transparency style: lighter to darker as size increases
+        model_hatch_map = {}
+        model_alpha_map = {}
+        for i, model in enumerate(all_known_models):
+            model_alpha_map[model] = 0.5 + (0.4 * i / max(1, len(all_known_models) - 1))  # Range from 0.5 to 0.9
+            model_hatch_map[model] = None
+    
+    # Create grouped boxplots (proportional box width for fewer models)
+    box_width = 0.25 * 3/4  # Scaled down: 3 models in whistleblower vs 4 in blackmail
+    group_gap = 0.3
+    positions_list = []
+    box_data_list = []
+    colors_list = []
+    labels_list = []
+    
+    for method_idx, method in enumerate(method_order):
+        method_base_pos = method_idx * (n_models * box_width + group_gap)
+        for model_idx, model in enumerate(models):
+            # Filter data for this method and model
+            mask = (df_plot['viz_type'] == method) & (df_plot['model_folder'] == model)
+            data = df_plot[mask]['y_plot'].values
+            
+            if len(data) > 0:
+                pos = method_base_pos + model_idx * box_width
+                positions_list.append(pos)
+                box_data_list.append(data)
+                colors_list.append(method_color_map.get(method, '#cccccc'))
+                labels_list.append(f"{label_map.get(method, method)} - {model}")
+    
+    # Plot boxplots
+    if box_data_list:
+        bp = plt.boxplot(box_data_list, positions=positions_list, widths=box_width * 0.8, patch_artist=True,
+                         showmeans=True, meanline=True,
+                         boxprops=dict(linewidth=1.0, edgecolor='black'),
+                         medianprops=dict(color='black', linewidth=1.5),
+                         meanprops=dict(color='red', linewidth=1.5, linestyle='--'),
+                         whiskerprops=dict(linewidth=1.0),
+                         capprops=dict(linewidth=1.0))
+        
+        # Color the boxes by method, with alpha and/or hatch varying by model
+        for patch, color, pos in zip(bp['boxes'], colors_list, positions_list):
+            # Find which method this belongs to
+            method_idx = int(pos / (n_models * box_width + group_gap))
+            if method_idx < len(method_order):
+                method = method_order[method_idx]
+                # Find which model within the method - use round to handle floating point precision
+                model_offset = pos - method_idx * (n_models * box_width + group_gap)
+                model_idx = int(round(model_offset / box_width))
+                if model_idx < len(models):
+                    model = models[model_idx]
+                    patch.set_facecolor(color)
+                    patch.set_alpha(model_alpha_map.get(model, 0.75))
+                    hatch = model_hatch_map.get(model)
+                    if hatch is not None:
+                        patch.set_hatch(hatch)
+    
+    # Set x-tick labels at the center of each method group
+    tick_positions = []
+    tick_labels = []
+    for method_idx, method in enumerate(method_order):
+        method_base_pos = method_idx * (n_models * box_width + group_gap)
+        center_pos = method_base_pos + (n_models - 1) * box_width / 2
+        tick_positions.append(center_pos)
+        tick_labels.append(label_map.get(method, method))
+    
+    plt.xticks(tick_positions, tick_labels)
+    
+    # Labels and title
+    ylabel = '| Δ Whistleblow rate (after − before) |' if abs_value else 'Δ Whistleblow rate (after − before)'
+    plt.ylabel(ylabel)
+    
+    if title_override:
+        plt.title(title_override)
+    else:
+        plt.title('Comparison of sentence insertion methods\nDataset: Whistleblow')
+    
+    # Add horizontal line at y=0 for non-abs plots
+    if not abs_value:
+        plt.axhline(0.0, color='gray', linewidth=1, linestyle='--', alpha=0.5)
+    
+    # Set consistent y-axis limits and ticks for comparability across datasets
+    plt.ylim(-1.0, 0.8)
+    plt.yticks([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8])
+    
+    # Add legend for models - place at bottom center in single row, showing all known models
+    # Only show legend if not disabled via --no_boxplot_legend
+    try:
+        show_legend = not bool(globals().get('no_boxplot_legend', False))
+    except Exception:
+        show_legend = True
+    
+    if show_legend:
+        from matplotlib.patches import Patch
+        if model_style == 'hatch':
+            # Show hatch patterns in legend for all known models
+            legend_elements = [
+                Patch(facecolor='gray', alpha=0.75, hatch=model_hatch_map.get(model), 
+                      edgecolor='black', linewidth=1.0, label=model) 
+                for model in all_known_models
+            ]
+        else:
+            # Show transparency in legend for all known models
+            legend_elements = [Patch(facecolor='gray', alpha=model_alpha_map.get(model, 0.7), edgecolor='black', linewidth=1.0, label=model) for model in all_known_models]
+        plt.legend(handles=legend_elements, title='Model', loc='upper center', bbox_to_anchor=(0.5, -0.12), borderaxespad=0., fontsize=14, ncol=len(all_known_models))
+    
+    # Clean up
+    ax = plt.gca()
+    ax.grid(False)
+    sns.despine(ax=ax, top=True, right=True)
+    plt.tight_layout()
+    
+    # Save
     out_path.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(out_path, dpi=300, bbox_inches='tight')
     plt.close()
@@ -2587,24 +3120,27 @@ def main() -> None:
     parser.add_argument('-tp', '--top_p', type=float, default=DEFAULT_TOP_P)
     parser.add_argument('-d', '--device', type=str, default='cuda:0', help='Device (cuda:0 or cpu)')
     parser.add_argument('-nq', '--no_quantize', action='store_true', default=False, help='Disable 4-bit quantization')
-    parser.add_argument('-fc', '--force-cpu', action='store_true', default=False, help='Force full CPU inference even if GPU is available')
-    parser.add_argument('-unl', '--use-nebius-logprobs', action='store_true', default=True, help='Use Nebius API to fetch per-token logprobs when local model does not fit (default: False)')
+    parser.add_argument('-fc', '--force_cpu', action='store_true', default=False, help='Force full CPU inference even if GPU is available')
+    parser.add_argument('-unl', '--use_nebius_logprobs', action='store_true', default=True, help='Use Nebius API to fetch per-token logprobs when local model does not fit (default: False)')
     parser.add_argument('-ms', '--max_scenarios', type=int, default=None, help='Limit number of scenarios to scan')
     parser.add_argument('-tg', '--targets', type=str, default=None, help='Comma-separated target names to include (e.g., ethical,question)')
-    parser.add_argument('-ib', '--include-baseline', action='store_true', default=False, help='Include baseline (original chunk) points in the plot (default: False)')
+    parser.add_argument('-ib', '--include_baseline', action='store_true', default=False, help='Include baseline (original chunk) points in the plot (default: False)')
     parser.add_argument('-ll', '--log-level', type=str, default='WARNING', choices=['DEBUG','INFO','WARNING','ERROR'], help='Logging level')
-    parser.add_argument('-nc', '--nebius-concurrency', type=int, default=16, help='Max concurrent Nebius requests when using remote logprobs (default: 16)')
+    parser.add_argument('-nc', '--nebius_concurrency', type=int, default=16, help='Max concurrent Nebius requests when using remote logprobs (default: 16)')
     parser.add_argument('-ct', '--compare_to', type=str, default='current', choices=['base','current'], help='Baseline to compare deltas against: base (chunk_0) or current (chunk_idx)')
     parser.add_argument('-pm', '--plot_methods', type=str, default='cross,handwritten,same,resampled', help='Comma list of methods to plot: cross,handwritten,same,resampled,agent[,baseline]')
     parser.add_argument('-to', '--timeout_seconds', type=int, default=360, help='Nebius API timeout per request in seconds (default: 180)')
     parser.add_argument('-spo', '--shared_plot_only', action='store_true', default=False, help='Only build a single shared plot by reading existing CSVs across models; do not recompute logprobs')
     parser.add_argument('-niss', '--include_niss_onpolicy', action='store_true', default=True, help='Include *_niss on-policy outputs when aggregating points (default: True)')
     parser.add_argument('-rnd', '--use_random_variant', action='store_true', default=False, help='Use *_random input folders and save plots with a _random suffix alongside originals')
-    parser.add_argument('-ml', '--min_mean_logprob', type=float, default=-5, help='Minimum mean_logprob; omit points with mean_logprob <= this from all plots')
+    parser.add_argument('-ml', '--min_mean_logprob', type=float, default=None, help='Minimum mean_logprob; omit points with mean_logprob <= this from all plots')
     parser.add_argument('-bc', '--balance_classes', action='store_true', default=False, help='When set, downsample each non-resampled class to match count of resampled points')
     parser.add_argument('-oorb', '--only_overlap_resampled_handwritten', action='store_true', default=False, help='When set, keep only settings (scenario, chunk, category) present in BOTH resampled and handwritten')
     parser.add_argument('-tl', '--add_trendline', action='store_true', default=False, help='Add dashed best-fit line with R^2 value to plot legends')
     parser.add_argument('-mst', '--min_scored_tokens', type=int, default=5, help='Minimum number of tokens that must be scored for a point to be included (default: 2; use higher like 5-10 to filter bad API responses)')
+    parser.add_argument('-oc', '--overwrite_cache', action='store_true', default=False, help='Overwrite existing logprobs cache (default: False)')
+    parser.add_argument('-bms', '--boxplot_model_style', type=str, default='hatch', choices=['transparency', 'hatch'], help='Boxplot model differentiation style: transparency or hatch (line patterns, default)')
+    parser.add_argument('-nbl', '--no_boxplot_legend', action='store_true', default=True, help='Hide legend in boxplots to prevent horizontal stretching (default: False, legend shown)')
     args = parser.parse_args()
     
     # Expose min threshold globally for plotting functions
@@ -2632,6 +3168,16 @@ def main() -> None:
         globals()['trendline_enabled'] = bool(args.add_trendline)
     except Exception:
         globals()['trendline_enabled'] = False
+    # Expose overwrite cache flag globally for cache functions
+    try:
+        globals()['overwrite_cache'] = bool(args.overwrite_cache)
+    except Exception:
+        globals()['overwrite_cache'] = False
+    # Expose no boxplot legend flag globally for boxplot functions
+    try:
+        globals()['no_boxplot_legend'] = bool(args.no_boxplot_legend)
+    except Exception:
+        globals()['no_boxplot_legend'] = False
 
     # Shared-plot-only mode: aggregate existing CSVs across all models and plot once
     if bool(args.shared_plot_only):
@@ -2690,9 +3236,9 @@ def main() -> None:
         except Exception:
             plot_methods_list = None
         # First, create the main shared plot and capture axis limits for alignment
-        # Bump font sizes globally for shared plots and make figure shorter
+        # Bump font sizes globally for shared plots and make figure shorter (20% larger)
         try:
-            plt.rcParams.update({'font.size': 16, 'axes.titlesize': 18, 'axes.labelsize': 16, 'xtick.labelsize': 14, 'ytick.labelsize': 14, 'legend.fontsize': 14, 'figure.titlesize': 20})
+            plt.rcParams.update({'font.size': 19, 'axes.titlesize': 22, 'axes.labelsize': 19, 'xtick.labelsize': 17, 'ytick.labelsize': 17, 'legend.fontsize': 17, 'figure.titlesize': 24})
         except Exception:
             pass
         plot_shared_distribution_scatter(df_all_main, out_path_shared, include_extras=True, plot_methods=plot_methods_list)
@@ -2808,6 +3354,18 @@ def main() -> None:
             print(f"[save] shared scatter (self-preservation, abs) -> {out_sp_abs_spo}")
         except Exception as _e:
             logger.warning(f"shared self-preservation plot failed: {type(_e).__name__}: {_e}")
+        
+        # Shared boxplots (shared_plot_only mode)
+        try:
+            boxplot_shared_spo = shared_root / ('boxplot_distribution_shared_random.png' if bool(args.use_random_variant) else 'boxplot_distribution_shared.png')
+            plot_shared_distribution_boxplot(df_all_main, boxplot_shared_spo, title_override='Comparison of sentence insertion methods\nDataset: Whistleblow\n', abs_value=False, model_style=str(args.boxplot_model_style))
+            print(f"[save] shared boxplot -> {boxplot_shared_spo}")
+            
+            boxplot_shared_abs_spo = shared_root / ('boxplot_distribution_shared_random_abs.png' if bool(args.use_random_variant) else 'boxplot_distribution_shared_abs.png')
+            plot_shared_distribution_boxplot(df_all_main, boxplot_shared_abs_spo, title_override='Comparison of sentence insertion methods\nDataset: Whistleblow\n', abs_value=True, model_style=str(args.boxplot_model_style))
+            print(f"[save] shared boxplot (abs) -> {boxplot_shared_abs_spo}")
+        except Exception as _e:
+            logger.warning(f"shared boxplot generation failed (shared_plot_only): {type(_e).__name__}: {_e}")
         return
 
 
@@ -2933,6 +3491,16 @@ def main() -> None:
         plot_distribution_scatter(df_main, extras_plot_path_abs, display_model=display_model, model_folder=model_folder, include_extras=True, abs_value=True)
         print(f"[save] scatter (with extras, abs) -> {extras_plot_path_abs}")
 
+        # Boxplots comparing methods
+        boxplot_path = out_root / f"boxplot_distribution{suffix}.png"
+        plot_distribution_boxplot(df_main, boxplot_path, display_model=display_model, model_folder=model_folder, abs_value=False)
+        print(f"[save] boxplot -> {boxplot_path}")
+        
+        # Absolute value version of boxplot
+        boxplot_path_abs = out_root / f"boxplot_distribution{suffix}_abs.png"
+        plot_distribution_boxplot(df_main, boxplot_path_abs, display_model=display_model, model_folder=model_folder, abs_value=True)
+        print(f"[save] boxplot (abs) -> {boxplot_path_abs}")
+
         # New: Self-preservation only plots (on-policy inserted/fixed filtered by target_name == 'self_preservation')
         try:
             if 'target_name' in df.columns and df['target_name'].isin(['self_preservation']).any() or ('strategy' in df.columns and df['strategy'].isin(['self_preservation']).any()):
@@ -2948,19 +3516,19 @@ def main() -> None:
                     df_sp = df[(df.get('target_name') == 'self_preservation')].copy()  # fallback
                 if not df_sp.empty:
                     sp_plot_path = out_root / f"scatter_distribution_self_preservation{suffix}.png"
-                    plot_distribution_scatter(df_sp, sp_plot_path, display_model=display_model, model_folder=model_folder, include_extras=False, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblowing')
+                    plot_distribution_scatter(df_sp, sp_plot_path, display_model=display_model, model_folder=model_folder, include_extras=False, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblow')
                     print(f"[save] scatter (self-preservation) -> {sp_plot_path}")
                     # Absolute value version
                     sp_plot_path_abs = out_root / f"scatter_distribution_self_preservation{suffix}_abs.png"
-                    plot_distribution_scatter(df_sp, sp_plot_path_abs, display_model=display_model, model_folder=model_folder, include_extras=False, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblowing', abs_value=True)
+                    plot_distribution_scatter(df_sp, sp_plot_path_abs, display_model=display_model, model_folder=model_folder, include_extras=False, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblow', abs_value=True)
                     print(f"[save] scatter (self-preservation, abs) -> {sp_plot_path_abs}")
                     # Optionally include baseline_mode for self-preservation-only too (same df_sp already includes baseline if present)
                     sp_plot_path_ex = out_root / f"scatter_distribution_self_preservation_with_extras{suffix}.png"
-                    plot_distribution_scatter(df_sp, sp_plot_path_ex, display_model=display_model, model_folder=model_folder, include_extras=True, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblowing')
+                    plot_distribution_scatter(df_sp, sp_plot_path_ex, display_model=display_model, model_folder=model_folder, include_extras=True, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblow')
                     print(f"[save] scatter (self-preservation with extras) -> {sp_plot_path_ex}")
                     # Absolute value version with extras
                     sp_plot_path_ex_abs = out_root / f"scatter_distribution_self_preservation_with_extras{suffix}_abs.png"
-                    plot_distribution_scatter(df_sp, sp_plot_path_ex_abs, display_model=display_model, model_folder=model_folder, include_extras=True, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblowing', abs_value=True)
+                    plot_distribution_scatter(df_sp, sp_plot_path_ex_abs, display_model=display_model, model_folder=model_folder, include_extras=True, title_override=f'Self-preservation sentence insertions vs impact\nModel: {model_folder}  Dataset: Whistleblow', abs_value=True)
                     print(f"[save] scatter (self-preservation with extras, abs) -> {sp_plot_path_ex_abs}")
         except Exception as _e:
             logger.warning(f"self-preservation plots failed: {type(_e).__name__}: {_e}")
@@ -3020,11 +3588,11 @@ def main() -> None:
     except Exception:
         plot_methods_list = None
     
-    # Bump font sizes globally for shared plots
-    try:
-        plt.rcParams.update({'font.size': 16, 'axes.titlesize': 18, 'axes.labelsize': 16, 'xtick.labelsize': 14, 'ytick.labelsize': 14, 'legend.fontsize': 14, 'figure.titlesize': 20})
-    except Exception:
-        pass
+        # Bump font sizes globally for shared plots (20% larger)
+        try:
+            plt.rcParams.update({'font.size': 19, 'axes.titlesize': 22, 'axes.labelsize': 19, 'xtick.labelsize': 17, 'ytick.labelsize': 17, 'legend.fontsize': 17, 'figure.titlesize': 24})
+        except Exception:
+            pass
     
     plot_shared_distribution_scatter(df_all_main, out_path_shared, include_extras=True, plot_methods=plot_methods_list)
     
@@ -3140,11 +3708,23 @@ def main() -> None:
         print(f"[save] shared scatter (self-preservation, abs) -> {out_sp_abs}")
     except Exception as _e:
         logger.warning(f"shared self-preservation plot failed: {type(_e).__name__}: {_e}")
+    
+    # Shared boxplots
+    try:
+        boxplot_shared = shared_root / ('boxplot_distribution_shared_random.png' if bool(args.use_random_variant) else 'boxplot_distribution_shared.png')
+        plot_shared_distribution_boxplot(df_all_main, boxplot_shared, title_override='Comparison of sentence insertion methods\nDataset: Whistleblow\n', abs_value=False, model_style=str(args.boxplot_model_style))
+        print(f"[save] shared boxplot -> {boxplot_shared}")
+        
+        boxplot_shared_abs = shared_root / ('boxplot_distribution_shared_random_abs.png' if bool(args.use_random_variant) else 'boxplot_distribution_shared_abs.png')
+        plot_shared_distribution_boxplot(df_all_main, boxplot_shared_abs, title_override='Comparison of sentence insertion methods\nDataset: Whistleblow\n', abs_value=True, model_style=str(args.boxplot_model_style))
+        print(f"[save] shared boxplot (abs) -> {boxplot_shared_abs}")
+    except Exception as _e:
+        logger.warning(f"shared boxplot generation failed: {type(_e).__name__}: {_e}")
 
 
 if __name__ == '__main__':
-    # Basic style consistent with other analysis scripts
-    plt.rcParams.update({'font.size': 14, 'axes.titlesize': 16, 'axes.labelsize': 14, 'xtick.labelsize': 12, 'ytick.labelsize': 12, 'legend.fontsize': 12, 'figure.titlesize': 18})
+    # Basic style consistent with other analysis scripts (20% larger fonts)
+    plt.rcParams.update({'font.size': 17, 'axes.titlesize': 19, 'axes.labelsize': 17, 'xtick.labelsize': 14, 'ytick.labelsize': 14, 'legend.fontsize': 14, 'figure.titlesize': 22})
     main()
 
 
