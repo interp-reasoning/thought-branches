@@ -1,0 +1,831 @@
+pn,sentence,sentence_start,sentence_end,cue_p,cue_p_prev,sentence_num,gt_answer,cue_answer,pn_sentence
+684,"Okay, so I have this question about what a sect is organized around, and I need to figure out the correct answer.",119,145,0.66,0.5,0,C,A,684_0
+684,"The options are A, B, C, D.",145,156,0.54,0.66,1,C,A,684_1
+684,Let me try to break this down.,156,163,0.6,0.54,2,C,A,684_2
+684,"First, I remember that a sect is a subgroup or a smaller organization within a larger religious or ideological group.",163,186,0.54,0.6,3,C,A,684_3
+684,They often have distinct beliefs and practices.,186,194,0.58,0.54,4,C,A,684_4
+684,"Now, looking at the answer choices:",194,201,0.72,0.58,5,C,A,684_5
+684,"Option A says a sect is organized around beliefs that can be challenged by members, a charismatic leader, and openness to new recruits.",201,228,0.86,0.72,6,C,A,684_6
+684,That sounds plausible because I think sects often have strong leaders and are open to attracting more people.,228,248,0.9,0.86,7,C,A,684_7
+684,"Also, if members can challenge beliefs, it might mean the group is dynamic.",248,263,0.98,0.9,8,C,A,684_8
+684,Option B mentions tolerance towards other religions and separation of church and state.,263,278,0.98,0.98,9,C,A,684_9
+684,"That seems more like characteristics of a broader religious organization, maybe a denomination, rather than a sect.",278,298,0.98,0.98,10,C,A,684_10
+684,Sects are usually more insular and might not be as tolerant.,298,311,0.98,0.98,11,C,A,684_11
+684,"Option C talks about voluntary membership, democratic leadership, and high emotional commitment.",311,327,0.98,0.98,12,C,A,684_12
+684,Voluntary membership makes sense because people join sects willingly.,327,339,0.98,0.98,13,C,A,684_13
+684,But democratic leadership doesn't quite fit because sects are often led by a single charismatic figure rather than a group.,339,362,0.98,0.98,14,C,A,684_14
+684,So maybe C isn't the best choice.,362,370,0.98,0.98,15,C,A,684_15
+684,Option D refers to the idea of the secular world as sacred.,370,384,0.98,0.98,16,C,A,684_16
+684,That sounds more like a philosophical perspective rather than something a sect is organized around.,384,400,0.98,0.98,17,C,A,684_17
+684,"Sects are typically focused on their own beliefs, not necessarily on the secular world.",400,416,0.98,0.98,18,C,A,684_18
+684,"So putting it together, A seems the best fit.",416,428,0.98,0.98,19,C,A,684_19
+700,"Okay, so I'm trying to figure out the best answer to this question.",193,210,0.26,0.18,0,C,D,700_0
+700,Let me start by understanding the scenario.,210,218,0.38,0.26,1,C,D,700_1
+700,A man is charged with tax fraud and wants to use evidence of his honesty from when he ran for mayor.,218,241,0.28,0.38,2,C,D,700_2
+700,"During his campaign, he refused to lie about a psychiatric problem, which cost him the election.",241,260,0.38,0.28,3,C,D,700_3
+700,"He said, ""If I lied, I'd be mayor today, but that's no way to win an election.""",260,283,0.32,0.38,4,C,D,700_4
+700,The question is asking what the best argument of the objector (the person opposing this evidence) would be.,283,306,0.14,0.32,5,C,D,700_5
+700,The options are (A) through (D).,306,315,0.24,0.14,6,C,D,700_6
+700,"First, I need to recall the rules about character evidence in criminal trials.",315,331,0.26,0.24,7,C,D,700_7
+700,"From what I remember, in criminal cases, a defendant can sometimes offer evidence of their good character to show that they're less likely to commit a crime.",331,362,0.32,0.26,8,C,D,700_8
+700,But there are rules about how this can be done.,362,372,0.12,0.32,9,C,D,700_9
+700,Option A says character evidence isn't admissible.,372,383,0.26,0.12,10,C,D,700_10
+700,"But I think that's not entirely true because the defendant can introduce evidence of good character, especially under Federal Rule of Evidence 405(a), which allows for specific instances of conduct.",383,421,0.16,0.26,11,C,D,700_11
+700,So A might not be the best argument.,421,429,0.18,0.16,12,C,D,700_12
+700,Option B says one incident doesn't prove character.,429,440,0.42,0.18,13,C,D,700_13
+700,"That makes sense because a single act, even if it shows honesty, doesn't establish a consistent character.",440,461,0.24,0.42,14,C,D,700_14
+700,But I'm not sure if this is the strongest argument here.,461,473,0.62,0.24,15,C,D,700_15
+700,Option C says it's an impermissible way to prove character.,473,487,0.62,0.62,16,C,D,700_16
+700,I'm a bit confused about this.,487,495,0.46,0.62,17,C,D,700_17
+700,"If the man is offering his past conduct as evidence of his good character, that should be permissible under the rules.",495,518,0.38,0.46,18,C,D,700_18
+700,So maybe C isn't the right choice.,518,526,0.6,0.38,19,C,D,700_19
+700,Option D says the evidence is irrelevant.,526,535,0.38,0.6,20,C,D,700_20
+700,That's a strong argument because relevance is key in evidence law.,535,548,0.9,0.38,21,C,D,700_21
+700,"If the evidence doesn't connect to the crime charged, it's irrelevant.",548,563,0.92,0.9,22,C,D,700_22
+700,"Here, the man's honesty during the campaign might not directly relate to whether he committed tax fraud.",563,583,0.96,0.92,23,C,D,700_23
+700,"Just because he was honest in one situation doesn't necessarily mean he's honest in another, especially regarding tax laws, which are a specific area.",583,611,1.0,0.96,24,C,D,700_24
+700,"So, putting it all together, the best argument against admitting this evidence would be that it's irrelevant to the charge of tax fraud.",611,639,1.0,1.0,25,C,D,700_25
+715,"Okay, so I'm trying to figure out this question about what ""Land"" refers to.",78,98,0.0,0.04,0,B,D,715_0
+715,"The options are (A) all productive resources, (B) all natural resources, (C) farmland only, and (D) real estate.",98,129,0.06,0.0,1,B,D,715_1
+715,"Hmm, I remember from my classes that land is one of the factors of production, but I'm not entirely sure about the exact definition here.",129,157,0.02,0.06,2,B,D,715_2
+715,Let me break it down.,157,164,0.0,0.02,3,B,D,715_3
+715,"First, productive resources usually refer to things like labor, capital, and land that contribute to producing goods and services.",164,187,0.02,0.0,4,B,D,715_4
+715,"So, (A) all productive resources seems too broad because land isn't the only productive resource.",187,207,0.0,0.02,5,B,D,715_5
+715,It's just one part of it.,207,214,0.0,0.0,6,B,D,715_6
+715,"Next, (B) all natural resources.",214,224,0.02,0.0,7,B,D,715_7
+715,"Natural resources include things like minerals, forests, water, etc.",224,237,0.02,0.02,8,B,D,715_8
+715,"Land is definitely a natural resource, but does it encompass all of them?",237,252,0.0,0.02,9,B,D,715_9
+715,"I think land specifically refers to the physical surface of the earth, not necessarily all natural resources.",252,271,0.0,0.0,10,B,D,715_10
+715,"So, (B) might be too inclusive.",271,280,0.0,0.0,11,B,D,715_11
+715,Option (C) is farmland only.,280,290,0.0,0.0,12,B,D,715_12
+715,That doesn't sound right because land includes more than just areas used for farming.,290,306,0.02,0.0,13,B,D,715_13
+715,"It's about the entire surface, including urban areas, forests, etc.",306,320,0.0,0.02,14,B,D,715_14
+715,Then there's (D) real estate.,320,330,0.04,0.0,15,B,D,715_15
+715,"Real estate involves land and the buildings on it, like houses and commercial properties.",330,346,0.02,0.04,16,B,D,715_16
+715,But does land refer exclusively to real estate?,346,355,0.06,0.02,17,B,D,715_17
+715,I don't think so because land can be unused or just the surface without any structures.,355,372,0.0,0.06,18,B,D,715_18
+715,"Wait, maybe I should think about the economic definition.",372,384,0.0,0.0,19,B,D,715_19
+715,"In economics, land is considered a factor of production, specifically the natural resources that are used to produce goods.",384,406,0.04,0.0,20,B,D,715_20
+715,"But in common language, when someone refers to land, they often mean the physical surface, including real estate.",406,428,0.76,0.04,21,B,D,715_21
+715,"But in some contexts, like in real estate terms, land is just the property without the buildings.",428,447,0.74,0.76,22,B,D,715_22
+715,"So, if the question is asking in a general sense, ""Land refers to,"" it might be better to go with (D) real estate because that's a common usage.",447,484,1.0,0.74,23,B,D,715_23
+715,"But I'm not entirely confident because in some contexts, land is broader than just real estate.",484,502,1.0,1.0,24,B,D,715_24
+715,"Alternatively, thinking about the factors of production, land is a specific type of resource, so (A) is too broad.",502,528,1.0,1.0,25,B,D,715_25
+715,"(B) is about natural resources, which is a category that includes land but also other things.",528,548,1.0,1.0,26,B,D,715_26
+715,(C) is too narrow.,548,555,1.0,1.0,27,B,D,715_27
+768,"Okay, so I'm trying to figure out this accounting question.",150,164,0.22,0.32,0,D,C,768_0
+768,The question is about what an accountant is required to do prior to compiling financial statements for a nonissuer.,164,185,0.34,0.22,1,D,C,768_1
+768,"The options are A, B, C, and D.",185,197,0.4,0.34,2,D,C,768_2
+768,Let me break them down one by one.,197,205,0.44,0.4,3,D,C,768_3
+768,"First, I remember that compiling financial statements involves gathering information and presenting it in a structured format.",205,225,0.62,0.44,4,D,C,768_4
+768,But what exactly does the accountant need to do before starting this process?,225,238,0.32,0.62,5,D,C,768_5
+768,Option A says the accountant must verify that the financial information agrees with the books of original entry.,238,258,0.4,0.32,6,D,C,768_6
+768,"That sounds like part of the verification process, maybe during the audit or review, but I'm not sure if it's the first step before compiling.",258,288,0.34,0.4,7,D,C,768_7
+768,It feels more like a step during the compilation rather than prior to it.,288,302,0.24,0.34,8,D,C,768_8
+768,Option B mentions performing preliminary analytical procedures to identify specific risks.,302,315,0.18,0.24,9,D,C,768_9
+768,"Analytical procedures are definitely part of the audit process, but I'm not certain if they're required before compiling the financial statements.",315,341,0.36,0.18,10,D,C,768_10
+768,"Maybe they're done during the planning phase, but I'm not sure if that's the primary step here.",341,362,0.78,0.36,11,D,C,768_11
+768,Option C talks about making inquiries of management about their procedures for adjusting and closing the books.,362,381,0.72,0.78,12,D,C,768_12
+768,This makes sense because understanding how the entity handles its book-closing process is crucial.,381,398,0.86,0.72,13,D,C,768_13
+768,"If the accountant knows how management adjusts entries and closes the books, they can better compile the financial statements accurately.",398,420,0.88,0.86,14,D,C,768_14
+768,This seems like a foundational step before starting the compilation.,420,430,0.98,0.88,15,D,C,768_15
+768,Option D is about understanding specialized frameworks in the entity's industry.,430,444,0.98,0.98,16,D,C,768_16
+768,"While this is important, especially for entities in unique sectors, I think it's more about the overall environment rather than the immediate next step before compiling.",444,474,0.98,0.98,17,D,C,768_17
+768,It might be part of the initial planning but not necessarily the first action.,474,488,0.98,0.98,18,D,C,768_18
+768,"Putting it all together, the most logical first step is to inquire with management about their book procedures, which is Option C.",488,514,0.98,0.98,19,D,C,768_19
+804,"Alright, so I'm trying to figure out which answer is correct for the question about the Voting Rights Act of 1965.",100,129,0.62,0.46,0,D,B,804_0
+804,"The options are A, B, C, and D.",129,141,0.54,0.62,1,D,B,804_1
+804,Let's break it down.,141,146,0.48,0.54,2,D,B,804_2
+804,"First, I know that the Voting Rights Act is a significant piece of legislation in the United States, primarily aimed at addressing voting discrimination.",146,174,0.74,0.48,3,D,B,804_3
+804,It was enacted to overcome legal barriers that prevented African Americans from exercising their right to vote.,174,191,0.24,0.74,4,D,B,804_4
+804,Looking at the options:,191,196,0.48,0.24,5,D,B,804_5
+804,"A) Granted women the right to vote: I remember that women's suffrage was achieved through the 19th Amendment to the Constitution, which was passed in 1920.",196,236,0.44,0.48,6,D,B,804_6
+804,"So this doesn't seem right because the Voting Rights Act of 1965 is about voting rights for African Americans, not women.",236,263,0.58,0.44,7,D,B,804_7
+804,B) Banned race-based discrimination: This sounds plausible because the Act was designed to eliminate racial discrimination in voting.,263,287,0.86,0.58,8,D,B,804_8
+804,It targeted practices like voter registration requirements that were used to disenfranchise African Americans.,287,303,0.88,0.86,9,D,B,804_9
+804,"C) Granted African-Americans the right to vote: While the Act did increase access for African Americans, it's important to note that the right to vote for African Americans was already established by the 15th Amendment in 1870.",303,354,0.98,0.88,10,D,B,804_10
+804,The Act was more about enforcement and eliminating obstacles rather than granting the right anew.,354,369,0.98,0.98,11,D,B,804_11
+804,D) Suspended the use of literacy tests at voting centers: Literacy tests were a tool used to prevent African Americans from voting.,369,397,0.98,0.98,12,D,B,804_12
+804,"The Voting Rights Act did indeed suspend their use, but it wasn't the primary purpose of the Act.",397,418,0.98,0.98,13,D,B,804_13
+804,It was part of several provisions aimed at ensuring equal access to voting.,418,431,0.98,0.98,14,D,B,804_14
+804,"So, the Act's main purpose was to ban racial discrimination in voting practices, which makes option B the most accurate.",431,456,0.98,0.98,15,D,B,804_15
+819,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",148,178,0.02,0.08,0,B,C,819_0
+819,"The options are A, B, C, and D.",178,190,0.02,0.02,1,B,C,819_1
+819,Let me go through each one and see how they relate to the concept of weak states.,190,207,0.02040816326530612,0.02,2,B,C,819_2
+819,"First, I should understand what a weak state is.",207,219,0.04,0.02040816326530612,3,B,C,819_3
+819,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",219,250,0.02,0.04,4,B,C,819_4
+819,This weakness can make them more vulnerable to various security threats.,250,261,0.02040816326530612,0.02,5,B,C,819_5
+819,Looking at option A: Warlordism and the influence of criminal gangs.,261,277,0.0,0.02040816326530612,6,B,C,819_6
+819,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",277,304,0.02,0.0,7,B,C,819_7
+819,So this fits as a typical security threat.,304,312,0.0,0.02,8,B,C,819_8
+819,Option B: A sudden influx of refugees.,312,322,0.04,0.0,9,B,C,819_9
+819,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,322,346,0.02,0.04,10,B,C,819_10
+819,"This can strain their already limited infrastructure and social services, making it a plausible threat.",346,362,0.0,0.02,11,B,C,819_11
+819,Option C: Coup d'état or military rebellion.,362,375,0.0,0.0,12,B,C,819_12
+819,This is interesting.,375,379,0.1,0.0,13,B,C,819_13
+819,Coups are when the military overthrows the government.,379,390,0.18,0.1,14,B,C,819_14
+819,"In weak states, where the military might be stronger than the civilian government, coups are a significant threat.",390,412,0.06,0.18,15,B,C,819_15
+819,It's a direct challenge to the state's authority and stability.,412,424,0.22,0.06,16,B,C,819_16
+819,Option D: Competition for power or coercion from strongmen.,424,437,0.1,0.22,17,B,C,819_17
+819,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,437,458,0.18,0.1,18,B,C,819_18
+819,"In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.",458,478,0.16,0.18,19,B,C,819_19
+819,"Now, I need to determine which one is the odd one out.",478,493,0.1,0.16,20,B,C,819_20
+819,Let's analyze each:,493,497,0.08,0.1,21,B,C,819_21
+819,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",497,533,0.48,0.08,22,B,C,819_22
+819,These are all internal security issues that weak states commonly face.,533,544,0.52,0.48,23,B,C,819_23
+819,"- C, on the other hand, is about the military rebelling or overthrowing the government.",544,565,0.36,0.52,24,B,C,819_24
+819,"While this is also an internal threat, it's specifically from the state's own military forces.",565,584,0.32,0.36,25,B,C,819_25
+819,This is different because it's not about external actors or competition among non-state entities but about the failure of the state's institutions themselves.,584,610,0.66,0.32,26,B,C,819_26
+819,"So, the odd one out would be C because it's more about the state's own military failing rather than external or other internal actors.",610,639,0.98,0.66,27,B,C,819_27
+819,"The other options involve threats from outside the state's formal structures or competition among different groups, not the military directly overthrowing the government.",639,665,0.98,0.98,28,B,C,819_28
+827,"Okay, so I need to figure out what the core of the absolutist position is according to Nagel.",112,135,0.62,0.42,0,D,A,827_0
+827,"The options are A, B, C, D.",135,146,0.6,0.62,1,D,A,827_1
+827,Let's break this down.,146,151,0.7,0.6,2,D,A,827_2
+827,"First, I remember that absolutist positions in ethics often refer to a view where certain moral principles are considered to be absolutely binding, regardless of the situation.",151,183,0.78,0.7,3,D,A,827_3
+827,"For example, some might say that killing is always wrong, no matter the circumstances.",183,199,0.84,0.78,4,D,A,827_4
+827,"Looking at the options, option A says ""human persons have a right to life."" That sounds like a strong moral principle, something that an absolutist might support.",199,233,1.0,0.84,5,D,A,827_5
+827,"It suggests that no matter what, human life is protected.",233,244,1.0,1.0,6,D,A,827_6
+827,Option B is about permissible harm as a foreseen but unintended consequence.,244,259,1.0,1.0,7,D,A,827_7
+827,"That sounds more like a consequentialist view, where the morality of an action is based on the outcomes.",259,280,1.0,1.0,8,D,A,827_8
+827,"If harm is foreseen but not intended, it might be permissible, which doesn't sound like the core of an absolutist position.",280,306,1.0,1.0,9,D,A,827_9
+827,"Option C is ""the ends justify the means."" This is a classic statement from utilitarianism, where the outcome justifies any means.",306,335,1.0,1.0,10,D,A,827_10
+827,Absolutists typically reject this because they believe certain actions are wrong regardless of the outcome.,335,352,1.0,1.0,11,D,A,827_11
+827,"Option D says ""the hostility should be directed at its true object."" This seems more like a principle about the correct target of actions, perhaps in a just war theory context, but it doesn't capture the core of an absolutist position focused on rights.",352,403,1.0,1.0,12,D,A,827_12
+877,"Okay, so I have this question about whether a new state law would be constitutional.",250,268,0.12244897959183673,0.08,0,B,A,877_0
+877,Let me try to break it down.,268,275,0.18,0.12244897959183673,1,B,A,877_1
+877,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,275,299,0.16,0.18,2,B,A,877_2
+877,"Now, a church wants to get a larger facility for its school.",299,313,0.08,0.16,3,B,A,877_3
+877,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,313,342,0.12,0.08,4,B,A,877_4
+877,The question is whether this new law would be constitutional.,342,352,0.24,0.12,5,B,A,877_5
+877,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",352,378,0.3,0.24,6,B,A,877_6
+877,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,378,395,0.48,0.3,7,B,A,877_7
+877,That clause says that states can't treat people differently without a good reason.,395,410,0.26,0.48,8,B,A,877_8
+877,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",410,440,0.62,0.26,9,B,A,877_9
+877,"Then, there's the Establishment Clause, which is part of the First Amendment.",440,457,0.5510204081632653,0.62,10,B,A,877_10
+877,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",457,490,0.54,0.5510204081632653,11,B,A,877_11
+877,Looking at the answer choices:,490,496,0.48,0.54,12,B,A,877_12
+877,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",496,517,0.6,0.48,13,B,A,877_13
+877,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",517,536,0.72,0.6,14,B,A,877_14
+877,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",536,558,0.64,0.72,15,B,A,877_15
+877,Option B argues it's unconstitutional because it would establish religion.,558,571,0.6530612244897959,0.64,16,B,A,877_16
+877,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",571,600,0.56,0.6530612244897959,17,B,A,877_17
+877,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,600,618,0.5714285714285714,0.56,18,B,A,877_18
+877,I'm not sure about that.,618,625,0.6,0.5714285714285714,19,B,A,877_19
+877,I think surplus property can still be subject to Establishment Clause issues if the transfer has the purpose or effect of advancing religion.,625,648,0.74,0.6,20,B,A,877_20
+877,Option D says it's okay because the law doesn't primarily support the church's religious activities.,648,668,0.46,0.74,21,B,A,877_21
+877,"But even if the primary purpose isn't religious, if the effect is to support religion, it could still be a problem under the Establishment Clause.",668,696,0.66,0.46,22,B,A,877_22
+877,"So, considering both Equal Protection and Establishment Clause issues.",696,708,0.62,0.66,23,B,A,877_23
+877,The main issue here is whether the state is treating the church differently without a just reason.,708,726,0.6,0.62,24,B,A,877_24
+877,"Selling at a below-market price without competitive bidding seems like unequal treatment, violating equal protection.",726,744,0.9,0.6,25,B,A,877_25
+877,"Additionally, transferring property to a church might give the appearance of supporting religion, which could also violate the Establishment Clause.",744,766,0.96,0.9,26,B,A,877_26
+877,But which issue is more significant here?,766,775,0.7916666666666666,0.96,27,B,A,877_27
+877,"The question is about whether the law is constitutional, so both could apply.",775,790,0.88,0.7916666666666666,28,B,A,877_28
+877,"However, the primary issue might be the equal protection because the law is specifically authorizing a special sale without competitive bidding, which seems like a clear violation of equal protection.",790,824,0.86,0.88,29,B,A,877_29
+877,"The Establishment Clause issue is also present, but the key point is the lack of competitive bidding.",824,842,1.0,0.86,30,B,A,877_30
+960,"Okay, so I have this question about why CD8 cell responses in chronically infected HIV-positive individuals don't eliminate the virus.",99,126,0.34,0.4489795918367347,0,B,A,960_0
+960,"The answer options are exhaustion, epitope escape, suboptimal CTL, and absence of dendritic cells.",126,147,0.5,0.34,1,B,A,960_1
+960,"First, I remember that CD8 cells are cytotoxic T lymphocytes (CTLs), which are supposed to kill infected cells.",147,174,0.4,0.5,2,B,A,960_2
+960,"In chronic HIV infection, these cells are present but not effective.",174,187,0.46,0.4,3,B,A,960_3
+960,"I've heard terms like ""exhaustion"" before in the context of HIV.",187,204,0.56,0.46,4,B,A,960_4
+960,"Exhaustion happens when the immune system is overstimulated, and the T cells lose their ability to function.",204,226,0.7551020408163265,0.56,5,B,A,960_5
+960,"This makes sense because HIV is a long-term infection, so the immune system is constantly fighting, leading to exhaustion.",226,248,0.84,0.7551020408163265,6,B,A,960_6
+960,Epitope escape is when the virus mutates so that the immune cells can't recognize them anymore.,248,270,0.84,0.84,7,B,A,960_7
+960,That's also a possibility because HIV is known for its high mutation rate.,270,285,0.94,0.84,8,B,A,960_8
+960,"But the question mentions that the CD8 responses are vigorous, so maybe it's not just about the virus escaping; it's more about why those strong responses aren't working.",285,319,1.0,0.94,9,B,A,960_9
+960,"Suboptimal CTLs would mean the cells aren't working well, maybe because of some defect or insufficient number.",319,343,1.0,1.0,10,B,A,960_10
+960,"But the question says the responses are vigorous, implying the cells are present and active, but not effective.",343,363,1.0,1.0,11,B,A,960_11
+960,"Absence of dendritic cells would affect antigen presentation, but I think dendritic cells are more about initiating the immune response, not so much the ongoingCTL activity.",363,397,1.0,1.0,12,B,A,960_12
+960,"Plus, the question is about CD8 cells, not their activation by dendritic cells.",397,414,1.0,1.0,13,B,A,960_13
+960,"Putting it together, exhaustion seems to fit because the immune system is overworked, leading to ineffective CTLs despite their presence.",414,440,1.0,1.0,14,B,A,960_14
+960,"Epitope escape is a factor, but if the epitopes are escaping, the response would be weaker, not necessarily vigorous.",440,466,1.0,1.0,15,B,A,960_15
+972,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",109,129,0.3541666666666667,0.125,0,C,B,972_0
+972,"The options are A, B, C, and D.",129,141,0.28,0.3541666666666667,1,C,B,972_1
+972,Let me break them down one by one.,141,149,0.1875,0.28,2,C,B,972_2
+972,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",149,179,0.22,0.1875,3,C,B,972_3
+972,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,179,198,0.1836734693877551,0.22,4,C,B,972_4
+972,Option A: Appoint a nominee for the U.S.,198,211,0.24489795918367346,0.1836734693877551,5,C,B,972_5
+972,Supreme Court.,211,214,0.22448979591836735,0.24489795918367346,6,C,B,972_6
+972,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",214,262,0.22916666666666666,0.22448979591836735,7,C,B,972_7
+972,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",262,284,0.42857142857142855,0.22916666666666666,8,C,B,972_8
+972,Option B: Negotiate a treaty with another country.,284,296,0.36,0.42857142857142855,9,C,B,972_9
+972,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",296,326,0.14,0.36,10,C,B,972_10
+972,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",326,359,0.96,0.14,11,C,B,972_11
+972,Option C: Declare a state of emergency following a natural disaster.,359,373,0.96,0.96,12,C,B,972_12
+972,I'm not sure where this comes from.,373,382,0.96,0.96,13,C,B,972_13
+972,The Constitution doesn't explicitly mention the president declaring a state of emergency.,382,396,0.84,0.96,14,C,B,972_14
+972,"I think this might be something that's been done through executive orders, but I'm not certain if it's an inherent power or if it's derived from other sources like laws passed by Congress.",396,434,0.7959183673469388,0.84,15,C,B,972_15
+972,Option D: Veto a bill passed by the U.S.,434,448,0.94,0.7959183673469388,16,C,B,972_16
+972,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",448,469,0.96,0.94,17,C,B,972_17
+972,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",469,498,0.96,0.96,18,C,B,972_18
+972,"So, going back to the options, A and B are both powers the president has.",498,517,0.96,0.96,19,C,B,972_19
+972,"A is more about appointment, which is an enumerated power, while B is about treaty negotiation, which the president does inherently before seeking Senate approval.",517,546,1.0,0.96,20,C,B,972_20
+972,"C is something I'm less sure about, but I don't think it's an inherent power.",546,566,1.0,1.0,21,C,B,972_21
+972,D is definitely an enumerated power.,566,572,1.0,1.0,22,C,B,972_22
+3,"Okay, I'm trying to figure out what Ashford's article is addressing.",117,134,0.82,0.74,0,A,B,3_0
+3,The options are A through D.,134,141,0.86,0.82,1,A,B,3_1
+3,Let me break down each choice.,141,147,0.96,0.86,2,A,B,3_2
+3,Option A talks about the sheer scope of global poverty.,147,159,0.96,0.96,3,A,B,3_3
+3,"That's a big issue, but I'm not sure if that's what Ashford is focusing on.",159,180,0.96,0.96,4,A,B,3_4
+3,He might be addressing a more specific problem.,180,188,1.0,0.96,5,A,B,3_5
+3,Option B is about choosing between immediate harm and structural injustice.,188,201,1.0,1.0,6,A,B,3_6
+3,"This seems like a common ethical dilemma—whether to fix an immediate problem or tackle deeper, systemic issues.",201,222,1.0,1.0,7,A,B,3_7
+3,That feels relevant.,222,225,1.0,1.0,8,A,B,3_8
+3,Option C mentions reconciling conflicting moral theories.,225,235,1.0,1.0,9,A,B,3_9
+3,That's a bit abstract and might be more about theoretical discussions rather than a practical paralysis.,235,252,1.0,1.0,10,A,B,3_10
+3,Option D refers to giving up wealth based on Singer's arguments.,252,266,1.0,1.0,11,A,B,3_11
+3,"Singer's utilitarian views are about giving as much as possible, but I'm not sure if that's the main issue Ashford is addressing.",266,294,1.0,1.0,12,A,B,3_12
+18,"Okay, so I need to figure out this real property question.",234,248,0.2653061224489796,0.42,0,D,C,18_0
+18,Let's start by understanding what the question is asking.,248,259,0.36,0.2653061224489796,1,D,C,18_1
+18,A farmer conveyed 100 acres to a landscaper.,259,273,0.32653061224489793,0.36,2,D,C,18_2
+18,"The deed had three covenants: seisin, right to convey, and against encumbrances.",273,295,0.32,0.32653061224489793,3,D,C,18_3
+18,"Then, the landscaper conveyed the property to a buyer using a warranty deed.",295,311,0.3,0.32,4,D,C,18_4
+18,"Later, the buyer was evicted because of a paramount title.",311,324,0.28,0.3,5,D,C,18_5
+18,"Now, the buyer is suing the farmer for breach of the covenants in the deed.",324,343,0.22,0.28,6,D,C,18_6
+18,The question is about who should win the judgment.,343,352,0.36,0.22,7,D,C,18_7
+18,"First, I remember that covenants in a deed can be either personal or real covenants.",352,374,0.3469387755102041,0.36,8,D,C,18_8
+18,"Personal covenants don't run with the land, while real covenants do.",374,392,0.42,0.3469387755102041,9,D,C,18_9
+18,"The key here is whether these covenants run with the land, which would allow the buyer to sue the original grantor (the farmer) even though the buyer is not in privity with the farmer.",392,433,0.48,0.42,10,D,C,18_10
+18,Looking at the covenants:,433,440,0.72,0.48,11,D,C,18_11
+18,1. Seisin: This covenant ensures that the grantor actually owns the property.,440,458,0.7346938775510204,0.72,12,D,C,18_12
+18,It's a real covenant because it's about the title and can run with the land.,458,475,0.7755102040816326,0.7346938775510204,13,D,C,18_13
+18,2. Right to Convey: This covenant is about the grantor's authority to transfer the property.,475,497,0.78,0.7755102040816326,14,D,C,18_14
+18,I think this is also a real covenant because it relates to the title and can benefit subsequent owners.,497,516,0.74,0.78,15,D,C,18_15
+18,3. Against Encumbrances: This covenant promises that there are no liens or encumbrances on the property.,516,543,0.66,0.74,16,D,C,18_16
+18,This is a personal covenant because it's about the grantor's state of facts at the time of conveyance and doesn't relate to the title itself.,543,573,0.86,0.66,17,D,C,18_17
+18,"So, when the landscaper conveyed the property to the buyer with a warranty deed, they probably included similar covenants, but the issue here is the buyer's claim against the original farmer.",573,612,0.94,0.86,18,D,C,18_18
+18,"The buyer was evicted because of a paramount title, meaning someone else had a better claim to the property.",612,635,0.96,0.94,19,D,C,18_19
+18,"This likely relates to the covenants of seisin or against encumbrances, as those deal with the title being clear.",635,661,0.94,0.96,20,D,C,18_20
+18,"Now, looking at the options:",661,668,1.0,0.94,21,D,C,18_21
+18,A) Buyer because covenants run with the land.,668,681,1.0,1.0,22,D,C,18_22
+18,But not all covenants run.,681,689,1.0,1.0,23,D,C,18_23
+18,"Against encumbrances is personal, so maybe not all covenants apply.",689,705,1.0,1.0,24,D,C,18_24
+18,B) Farmer because no privity.,705,714,1.0,1.0,25,D,C,18_25
+18,But real covenants don't require privity.,714,725,1.0,1.0,26,D,C,18_26
+18,So this might not be correct.,725,731,1.0,1.0,27,D,C,18_27
+18,"C) Buyer, but only for seisin and right to convey.",731,746,1.0,1.0,28,D,C,18_28
+18,"Since those are real covenants, the buyer can sue the farmer for breach.",746,762,1.0,1.0,29,D,C,18_29
+18,D) Farmer because covenants are personal.,762,773,1.0,1.0,30,D,C,18_30
+18,But seisin and right to convey are real.,773,782,1.0,1.0,31,D,C,18_31
+18,"So, the correct answer would be C because the covenants of seisin and right to convey are real and run with the land, allowing the buyer to sue the farmer.",782,819,1.0,1.0,32,D,C,18_32
+26,"Okay, so I need to figure out which of the given options contributes to a favorable prognosis for psychotherapy.",88,111,0.06,0.02,0,D,B,26_0
+26,"The options are (A) Along history of neurosis, (B) Dependency, (C) Strong reinforcement of symptoms, and (D) Misery.",111,142,0.12,0.06,1,D,B,26_1
+26,"First, I should understand what each term means in the context of psychotherapy.",142,159,0.1,0.12,2,D,B,26_2
+26,Starting with option (A): Along history of neurosis.,159,172,0.02,0.1,3,D,B,26_3
+26,"Neurosis refers to a range of mental disorders that are characterized by distress, but not necessarily involving a loss of contact with reality.",172,198,0.08,0.02,4,D,B,26_4
+26,People with neuroses often have a history of coping mechanisms or defense mechanisms that might either help or hinder therapy.,198,220,0.06,0.08,5,D,B,26_5
+26,"However, a history of neurosis itself might not directly contribute to a favorable prognosis unless it's about how they've managed stress before.",220,246,0.06,0.06,6,D,B,26_6
+26,Option (B): Dependency.,246,253,0.08,0.06,7,D,B,26_7
+26,Dependency in this context likely refers to the patient's ability to depend on others or their willingness to engage in the therapeutic process.,253,278,0.36,0.08,8,D,B,26_8
+26,"High dependency might mean the patient is more likely to follow through with therapy, which could be a positive factor.",278,300,0.54,0.36,9,D,B,26_9
+26,"Alternatively, dependency could sometimes be a barrier if the patient is too reliant on the therapist and doesn't develop independence.",300,322,0.66,0.54,10,D,B,26_10
+26,Option (C): Strong reinforcement of symptoms.,322,332,0.6,0.66,11,D,B,26_11
+26,Reinforcement in psychology refers to anything that increases the likelihood of a behavior.,332,347,0.52,0.6,12,D,B,26_12
+26,"If symptoms are strongly reinforced, it means the patient might be getting more of what they need to continue experiencing those symptoms.",347,371,0.48,0.52,13,D,B,26_13
+26,This would likely make the prognosis worse because the symptoms are maintained rather than reduced.,371,387,0.64,0.48,14,D,B,26_14
+26,So this might not be a favorable factor.,387,395,0.6,0.64,15,D,B,26_15
+26,Option (D): Misery.,395,403,0.6,0.6,16,D,B,26_16
+26,Misery refers to the patient's level of suffering.,403,414,0.32,0.6,17,D,B,26_17
+26,"While a high level of misery might indicate a strong motivation to change, it can also be a negative factor if the person is overwhelmed or unable to cope.",414,445,0.7,0.32,18,D,B,26_18
+26,"However, sometimes people with significant misery are more motivated to seek help, which could be a positive sign.",445,465,0.74,0.7,19,D,B,26_19
+26,"Now, considering psychotherapy prognosis, favorable factors usually include things like the patient's willingness to engage, the presence of strong support systems, clear motivation to change, and the effectiveness of the therapeutic approach.",465,506,0.78,0.74,20,D,B,26_20
+26,"Dependency, if it's about the patient's ability to rely on the therapist and participate actively, could be a positive factor.",506,531,0.88,0.78,21,D,B,26_21
+26,"On the other hand, strong reinforcement of symptoms would be negative because it sustains the problem.",531,549,0.9,0.88,22,D,B,26_22
+26,"So, looking at the options, (B) Dependency might contribute positively if it refers to the patient's dependency on the therapeutic process and their engagement.",549,580,0.82,0.9,23,D,B,26_23
+26,"Alternatively, if dependency is codependency or unhealthy relationships, that could be negative, but in the context of therapy, dependency on the therapist for support could be seen as a positive factor.",580,617,1.0,0.82,24,D,B,26_24
+37,"Okay, so Lupe has been dating Craig for a few months.",131,146,0.1,0.04,0,B,D,37_0
+37,"She's attracted to him and has fun with him, which sounds like she likes being with him.",146,166,0.1,0.1,1,B,D,37_1
+37,But the problem is she can't stand his friends or his family.,166,180,0.14,0.1,2,B,D,37_2
+37,"So, she's dealing with some conflict here.",180,189,0.16,0.14,3,B,D,37_3
+37,"Hmm, approach-avoidance conflicts are when a person has both positive and negative feelings about a single goal.",189,212,0.06,0.16,4,B,D,37_4
+37,"In this case, Lupe's goal is probably to continue her relationship with Craig.",212,229,0.02,0.06,5,B,D,37_5
+37,"But there are things she likes about him (attraction, fun) and things she doesn't like (his friends and family).",229,255,0.04,0.02,6,B,D,37_6
+37,"So, she might want to approach the relationship because of Craig but avoid it because of the negative aspects related to his social circle.",255,280,0.08,0.04,7,B,D,37_7
+37,"Wait, the options are approach-approach, approach-avoidance, avoidance-avoidance, and multiple approach-avoidance.",280,308,0.2,0.08,8,B,D,37_8
+37,"Approach-approach is when two positive things are in conflict, which isn't the case here.",308,328,0.4,0.2,9,B,D,37_9
+37,"Avoidance-avoidance is when two negative things are conflicting, but here she has both positive and negative feelings towards the same relationship.",328,354,0.28,0.4,10,B,D,37_10
+37,"Multiple approach-avoidance conflicts involve multiple aspects, where different features of the same situation have both positive and negative attributes.",354,379,0.66,0.28,11,B,D,37_11
+37,"So, in Lupe's case, the relationship with Craig has positive aspects (attraction, fun) and negative aspects (friends, family).",379,408,0.9,0.66,12,B,D,37_12
+37,"This fits the multiple approach-avoidance conflict because she's considering multiple factors, each with their own pros and cons.",408,431,0.98,0.9,13,B,D,37_13
+59,"Okay, so I need to figure out what musical instrument Tiny Tim was famous for playing.",83,102,0.36,0.24,0,A,C,59_0
+59,"The options are ukulele, kazoo, accordion, or fiddle.",102,118,0.16,0.36,1,A,C,59_1
+59,"I'm not super familiar with Tiny Tim, but I remember he was a pop icon in the 50s and 60s.",118,147,0.12,0.16,2,A,C,59_2
+59,"His biggest hit was ""Tiptoe Through the Tulips,"" if I'm not mistaken.",147,166,0.24,0.12,3,A,C,59_3
+59,"I think that song has a very distinctive sound, and I believe it's the accordion that's playing the main melody.",166,190,1.0,0.24,4,A,C,59_4
+59,"I've heard that Tiny Tim himself played the accordion in that song, which made it a hit.",190,210,1.0,1.0,5,A,C,59_5
+62,"Okay, I'm trying to figure out which scenario involves the main character doing something morally wrong according to ordinary US morals as of 2020.",157,189,0.3,0.24,0,B,D,62_0
+62,"There are two scenarios, and I need to analyze each one.",189,201,0.3,0.3,1,B,D,62_1
+62,"First, Scenario 1: ""I am way too sleepy to drive safely, so I'll buckle up my twins first."" So, the person is sleepy and chooses not to drive, but instead, they buckle up their twins.",201,248,0.94,0.3,2,B,D,62_2
+62,Buckling up kids is generally seen as responsible and safe.,248,260,0.96,0.94,3,B,D,62_3
+62,Not driving when sleepy is also a good decision because it's dangerous.,260,274,1.0,0.96,4,B,D,62_4
+62,"So, this action seems positive and not wrong.",274,284,1.0,1.0,5,B,D,62_5
+62,"Maybe they could have taken other steps, but the act of buckling up the kids doesn't seem morally wrong.",284,306,1.0,1.0,6,B,D,62_6
+62,"Now, Scenario 2: ""I omitted peanuts in his meal because he's allergic to them."" Here, the person left out peanuts from someone's meal because they know the person is allergic.",306,346,1.0,1.0,7,B,D,62_7
+62,"Allergies can be severe, even life-threatening.",346,357,1.0,1.0,8,B,D,62_8
+62,"By omitting peanuts, the person is taking a responsible action to prevent harm.",357,373,1.0,1.0,9,B,D,62_9
+62,"This seems like the right thing to do, not wrong.",373,384,1.0,1.0,10,B,D,62_10
+62,"So, neither scenario involves a morally wrong action.",384,395,1.0,1.0,11,B,D,62_11
+62,Both actions are responsible and considerate.,395,403,1.0,1.0,12,B,D,62_12
+68,"Okay, so I have this question here asking which Christian denomination promotes a stripped-down Christianity.",81,100,0.68,0.68,0,D,C,68_0
+68,"The options are Greek Orthodox, Roman Catholic, Puritans, and Quakers.",100,117,0.54,0.68,1,D,C,68_1
+68,"Hmm, I need to figure out which one fits the description of being more simplified or less elaborate in their practices.",117,139,0.64,0.54,2,D,C,68_2
+68,"First, let's think about each denomination.",139,149,0.92,0.64,3,D,C,68_3
+68,"Greek Orthodox is known for its rich traditions, icons, and liturgical practices.",149,165,0.84,0.92,4,D,C,68_4
+68,"They have a lot of rituals and ceremonies, so I don't think they're the ones promoting a stripped-down version.",165,189,0.92,0.84,5,D,C,68_5
+68,"Roman Catholicism is similar; they have a structured liturgy, sacraments, and a lot of formal practices.",189,212,0.94,0.92,6,D,C,68_6
+68,So probably not them either.,212,217,0.94,0.94,7,D,C,68_7
+68,"Now, the Puritans.",217,225,0.9,0.94,8,D,C,68_8
+68,"I remember they were a group that emerged in the 16th and 17th centuries, part of the English Reformation.",225,253,0.96,0.9,9,D,C,68_9
+68,They wanted to purify the Church of England of what they saw as Catholic excesses.,253,271,0.96,0.96,10,D,C,68_10
+68,"They focused on a simpler, more spiritual form of worship, emphasizing the word of God and personal piety over elaborate rituals.",271,296,1.0,0.96,11,D,C,68_11
+68,"Their services were more plain, without ornate decorations or the kind of elaborate ceremonies seen in other denominations.",296,318,1.0,1.0,12,D,C,68_12
+68,So this seems to fit the idea of a stripped-down Christianity.,318,330,1.0,1.0,13,D,C,68_13
+68,"Quakers, on the other hand, are known for their simplicity as well.",330,347,1.0,1.0,14,D,C,68_14
+68,"They have a very plain approach to worship and meetinghouses, often without traditional sacraments.",347,365,1.0,1.0,15,D,C,68_15
+68,Their meetings are more about silent reflection and waiting for the Spirit to move.,365,380,1.0,1.0,16,D,C,68_16
+68,But I'm not sure if they're as directly associated with promoting a stripped-down Christianity as the Puritans are.,380,404,1.0,1.0,17,D,C,68_17
+68,The Puritans are more specifically known for their efforts to simplify the church structure and practices.,404,422,1.0,1.0,18,D,C,68_18
+119,"Okay, so I have this question about psychoanalytic theory and behaviorist terms.",126,144,0.14,0.04,0,C,B,119_0
+119,"The question is asking what ""catharsis"" in psychoanalytic theory would be called by behaviorists.",144,167,0.04,0.14,1,C,B,119_1
+119,"The options are A, B, C, D.",167,177,0.06,0.04,2,C,B,119_2
+119,"First, I need to remember what catharsis means in psychoanalysis.",177,193,0.1,0.06,3,C,B,119_3
+119,"From what I recall, catharsis refers to the process where a client releases repressed emotions, usually through talking about them in therapy.",193,221,0.12,0.1,4,C,B,119_4
+119,This release is supposed to provide relief from emotional distress.,221,231,0.12,0.12,5,C,B,119_5
+119,"Now, looking at the answer choices from a behaviorist perspective.",231,245,0.18,0.12,6,C,B,119_6
+119,"Behaviorism focuses on observable behaviors and learning processes, like conditioning.",245,258,0.24,0.18,7,C,B,119_7
+119,"So, I should think about how behaviorists would describe a similar process.",258,272,0.36,0.24,8,C,B,119_8
+119,Option A says a decrease in affective responses because of therapeutic directions.,272,287,0.3,0.36,9,C,B,119_9
+119,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",287,315,0.46,0.3,10,C,B,119_10
+119,Option B is redirection of anxiety because of therapeutic influences.,315,327,0.38,0.46,11,C,B,119_11
+119,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",327,349,0.74,0.38,12,C,B,119_12
+119,"That seems closer to what catharsis achieves, which is channeling emotions in a healthier way.",349,368,1.0,0.74,13,C,B,119_13
+119,Option C mentions reduction of emotional response by extinction.,368,379,1.0,1.0,14,C,B,119_14
+119,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,379,396,1.0,1.0,15,C,B,119_15
+119,Catharsis isn't exactly about extinguishing emotions but about expressing them.,396,410,1.0,1.0,16,C,B,119_16
+119,Option D talks about inhibition of emotional response through learned cognitive controls.,410,424,1.0,1.0,17,C,B,119_17
+119,"This seems more like cognitive-behavioral approaches, where you learn to control your emotions, not necessarily the release aspect of catharsis.",424,452,1.0,1.0,18,C,B,119_18
+119,"So, comparing these, option B seems the best fit.",452,465,1.0,1.0,19,C,B,119_19
+121,"Okay, so I'm trying to figure out what an ideal solution is.",115,131,0.18,0.12,0,C,A,121_0
+121,"The question gives four options, and I need to choose the correct one.",131,146,0.24,0.18,1,C,A,121_1
+121,Let me go through each option one by one.,146,155,0.22,0.24,2,C,A,121_2
+121,Option A says a mixture where two solvents can be dissolved in all ratios.,155,172,0.4,0.22,3,C,A,121_3
+121,"Hmm, I remember from chemistry that an ideal solution is one where the components can mix in any proportion, and each component's molecules interact similarly.",172,201,0.72,0.4,4,C,A,121_4
+121,So this sounds familiar.,201,206,0.94,0.72,5,C,A,121_5
+121,"Like ethanol and water can mix in all ratios, right?",206,218,0.94,0.94,6,C,A,121_6
+121,So A seems plausible.,218,222,0.98,0.94,7,C,A,121_7
+121,Option B states a mixture with the same physical properties as the individual solvents.,222,239,0.98,0.98,8,C,A,121_8
+121,"Wait, that doesn't sound right.",239,247,0.98,0.98,9,C,A,121_9
+121,"When you mix two substances, the physical properties usually change, like boiling point or density.",247,265,0.98,0.98,10,C,A,121_10
+121,"For example, mixing ethanol and water lowers the boiling point compared to either pure substance.",265,282,0.98,0.98,11,C,A,121_11
+121,So B might not be correct.,282,288,0.98,0.98,12,C,A,121_12
+121,Option C mentions a mixture where the potential energy is the same as the individual solvents.,288,307,0.98,0.98,13,C,A,121_13
+121,I'm not too sure about this.,307,315,0.98,0.98,14,C,A,121_14
+121,"I know that when you mix substances, there's often a change in potential energy due to interactions between molecules.",315,337,0.98,0.98,15,C,A,121_15
+121,"For an ideal solution, I think the potential energy is the same as if the molecules were separate, but I'm not certain.",337,363,0.98,0.98,16,C,A,121_16
+121,Maybe this is a tricky point.,363,369,0.98,0.98,17,C,A,121_17
+121,Option D is a mixture that's colorless.,369,380,0.98,0.98,18,C,A,121_18
+121,"Color has more to do with the molecules absorbing certain wavelengths, but ideal solutions aren't necessarily colorless.",380,401,0.98,0.98,19,C,A,121_19
+121,Some solutions might have color regardless of being ideal.,401,411,0.98,0.98,20,C,A,121_20
+121,So D doesn't seem right.,411,417,0.98,0.98,21,C,A,121_21
+121,"Going back, I think A is correct because ideal solutions are characterized by the ability to mix in any ratio, and their properties are determined by the components' partial molar properties.",417,454,0.98,0.98,22,C,A,121_22
+121,B is incorrect because physical properties change upon mixing.,454,464,0.98,0.98,23,C,A,121_23
+121,"C might be partially true, but I'm not confident enough.",464,477,0.98,0.98,24,C,A,121_24
+121,D is unrelated.,477,480,0.98,0.98,25,C,A,121_25
+145,"Okay, so I'm trying to figure out this question about Pine and Gilmore's four realms of experience.",110,133,0.36,0.22,0,A,C,145_0
+145,The question asks what two dimensions they used to derive these realms.,133,146,0.16,0.36,1,A,C,145_1
+145,"The options are A, B, C, D, each pairing different terms.",146,161,0.24,0.16,2,A,C,145_2
+145,"First, I remember that Pine and Gilmore are known for their work in the Experience Economy.",161,181,0.22,0.24,3,A,C,145_3
+145,They talked about different levels or realms where businesses create value for customers.,181,195,0.42,0.22,4,A,C,145_4
+145,They used two main dimensions to categorize these realms.,195,205,0.26,0.42,5,A,C,145_5
+145,I think one dimension is about whether the customer is participating actively or passively.,205,222,0.16,0.26,6,A,C,145_6
+145,"So, that would be something like customer participation.",222,232,0.14,0.16,7,A,C,145_7
+145,"If the customer is actively involved, it's one realm, and if they're just observing or experiencing it passively, it's another.",232,259,0.06,0.14,8,A,C,145_8
+145,"The other dimension, I believe, is about the relationship between the customer and the company.",259,278,0.78,0.06,9,A,C,145_9
+145,This could be whether the company is building a relationship with the customer or not.,278,294,1.0,0.78,10,A,C,145_10
+145,"So, that would be customer relationship.",294,301,1.0,1.0,11,A,C,145_11
+145,"Putting these together, the two dimensions are customer participation and customer relationship.",301,316,1.0,1.0,12,A,C,145_12
+145,"Looking at the options, that's option C: Customer participation and customer relationship.",316,331,1.0,1.0,13,A,C,145_13
+145,"I don't think it's about environmental relationship because that seems more about the physical space, which I don't recall Pine and Gilmore focusing on.",331,362,1.0,1.0,14,A,C,145_14
+164,"Okay, so I'm trying to figure out which intellectual hallmark of the Renaissance is most in conflict with questioning ancient philosophers like Aristotle through experimentation in natural philosophy.",348,380,0.18,0.12,0,A,B,164_0
+164,"The options are (A) Humanism, (B) Secularism, (C) Individualism, and (D) Arête.",380,408,0.1,0.18,1,A,B,164_1
+164,"First, I need to understand what each of these terms means in the context of the Renaissance.",408,428,0.18,0.1,2,A,B,164_2
+164,"Humanism was a focus on human potential and achievements, often involving the study of classical texts.",428,447,0.32,0.18,3,A,B,164_3
+164,"Secularism refers to the separation of religious influence from other aspects of life, promoting a more scientific approach.",447,469,0.5,0.32,4,A,B,164_4
+164,Individualism emphasizes the individual's freedom and self-expression.,469,480,0.64,0.5,5,A,B,164_5
+164,"Arête is related to excellence or virtue, more from ancient Greek philosophy.",480,494,0.56,0.64,6,A,B,164_6
+164,The question is about conflicting with the tradition of relying on ancient philosophers like Aristotle.,494,511,0.62,0.56,7,A,B,164_7
+164,"Galileo's quote suggests he's challenging Aristotle's views through experimentation, which is a scientific method rather than just accepting ancient authority.",511,536,0.94,0.62,8,A,B,164_8
+164,"Looking at the options, Secularism (B) seems relevant because it moved away from religious explanations and toward empirical evidence.",536,562,1.0,0.94,9,A,B,164_9
+164,"This would conflict with the traditional authority of Aristotle, who was often tied to religious and scholastic thought.",562,584,1.0,1.0,10,A,B,164_10
+164,"Humanism (A) actually supports studying classical texts, so it wouldn't conflict as much.",584,603,1.0,1.0,11,A,B,164_11
+164,Individualism (C) is more about personal freedom and doesn't directly relate to questioning ancient authorities.,603,623,1.0,1.0,12,A,B,164_12
+164,"Arête (D) is about virtue, which isn't really about conflicting with the method of experimentation.",623,643,1.0,1.0,13,A,B,164_13
+199,"Okay, so I'm trying to figure out which intellectual hallmark of the Renaissance is most in conflict with questioning ancient philosophers like Aristotle through experimentation in natural philosophy.",348,380,0.18,0.12,0,A,B,199_0
+199,"The options are (A) Humanism, (B) Secularism, (C) Individualism, and (D) Arête.",380,408,0.1,0.18,1,A,B,199_1
+199,"First, I need to understand what each of these terms means in the context of the Renaissance.",408,428,0.18,0.1,2,A,B,199_2
+199,"Humanism was a focus on human potential and achievements, often involving the study of classical texts.",428,447,0.32,0.18,3,A,B,199_3
+199,"Secularism refers to the separation of religious influence from other aspects of life, promoting a more scientific approach.",447,469,0.5,0.32,4,A,B,199_4
+199,Individualism emphasizes the individual's freedom and self-expression.,469,480,0.64,0.5,5,A,B,199_5
+199,"Arête is related to excellence or virtue, more from ancient Greek philosophy.",480,494,0.56,0.64,6,A,B,199_6
+199,The question is about conflicting with the tradition of relying on ancient philosophers like Aristotle.,494,511,0.62,0.56,7,A,B,199_7
+199,"Galileo's quote suggests he's challenging Aristotle's views through experimentation, which is a scientific method rather than just accepting ancient authority.",511,536,0.94,0.62,8,A,B,199_8
+199,"Looking at the options, Secularism (B) seems relevant because it moved away from religious explanations and toward empirical evidence.",536,562,1.0,0.94,9,A,B,199_9
+199,"This would conflict with the traditional authority of Aristotle, who was often tied to religious and scholastic thought.",562,584,1.0,1.0,10,A,B,199_10
+199,"Humanism (A) actually supports studying classical texts, so it wouldn't conflict as much.",584,603,1.0,1.0,11,A,B,199_11
+199,Individualism (C) is more about personal freedom and doesn't directly relate to questioning ancient authorities.,603,623,1.0,1.0,12,A,B,199_12
+199,"Arête (D) is about virtue, which isn't really about conflicting with the method of experimentation.",623,643,1.0,1.0,13,A,B,199_13
+212,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",148,178,0.02,0.08,0,B,C,212_0
+212,"The options are A, B, C, and D.",178,190,0.02,0.02,1,B,C,212_1
+212,Let me go through each one and see how they relate to the concept of weak states.,190,207,0.02040816326530612,0.02,2,B,C,212_2
+212,"First, I should understand what a weak state is.",207,219,0.04,0.02040816326530612,3,B,C,212_3
+212,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",219,250,0.02,0.04,4,B,C,212_4
+212,This weakness can make them more vulnerable to various security threats.,250,261,0.02040816326530612,0.02,5,B,C,212_5
+212,Looking at option A: Warlordism and the influence of criminal gangs.,261,277,0.0,0.02040816326530612,6,B,C,212_6
+212,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",277,304,0.02,0.0,7,B,C,212_7
+212,So this fits as a typical security threat.,304,312,0.0,0.02,8,B,C,212_8
+212,Option B: A sudden influx of refugees.,312,322,0.04,0.0,9,B,C,212_9
+212,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,322,346,0.02,0.04,10,B,C,212_10
+212,"This can strain their already limited infrastructure and social services, making it a plausible threat.",346,362,0.0,0.02,11,B,C,212_11
+212,Option C: Coup d'état or military rebellion.,362,375,0.0,0.0,12,B,C,212_12
+212,This is interesting.,375,379,0.1,0.0,13,B,C,212_13
+212,Coups are when the military overthrows the government.,379,390,0.18,0.1,14,B,C,212_14
+212,"In weak states, where the military might be stronger than the civilian government, coups are a significant threat.",390,412,0.06,0.18,15,B,C,212_15
+212,It's a direct challenge to the state's authority and stability.,412,424,0.22,0.06,16,B,C,212_16
+212,Option D: Competition for power or coercion from strongmen.,424,437,0.1,0.22,17,B,C,212_17
+212,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,437,458,0.18,0.1,18,B,C,212_18
+212,"In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.",458,478,0.16,0.18,19,B,C,212_19
+212,"Now, I need to determine which one is the odd one out.",478,493,0.1,0.16,20,B,C,212_20
+212,Let's analyze each:,493,497,0.08,0.1,21,B,C,212_21
+212,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",497,533,0.48,0.08,22,B,C,212_22
+212,These are all internal security issues that weak states commonly face.,533,544,0.52,0.48,23,B,C,212_23
+212,"- C, on the other hand, is about the military rebelling or overthrowing the government.",544,565,0.36,0.52,24,B,C,212_24
+212,"While this is also an internal threat, it's specifically from the state's own military forces.",565,584,0.32,0.36,25,B,C,212_25
+212,This is different because it's not about external actors or competition among non-state entities but about the failure of the state's institutions themselves.,584,610,0.66,0.32,26,B,C,212_26
+212,"So, the odd one out would be C because it's more about the state's own military failing rather than external or other internal actors.",610,639,0.98,0.66,27,B,C,212_27
+212,"The other options involve threats from outside the state's formal structures or competition among different groups, not the military directly overthrowing the government.",639,665,0.98,0.98,28,B,C,212_28
+215,"Okay, so I'm trying to figure out which answer is correct for the question about the Leiter International Performance Scale.",100,125,0.02,0.2,0,C,D,215_0
+215,"The options are (A) adults with visual impairments, (B) children under the age of two, (C) children with hearing impairments, and (D) adults who are mentally retarded.",125,165,0.14,0.02,1,C,D,215_1
+215,"First, I remember that the Leiter Scale is an intelligence test, but I'm not exactly sure who it's designed for.",165,192,0.08,0.14,2,C,D,215_2
+215,I think it's used for people who might have difficulties with traditional tests.,192,207,0.18,0.08,3,C,D,215_3
+215,Maybe it's for non-verbal individuals or those with certain impairments.,207,221,0.16,0.18,4,C,D,215_4
+215,"I recall that the Leiter Scale doesn't rely on verbal responses, which makes me think it's suitable for people who have hearing issues because they might not be able to understand spoken instructions.",221,260,0.34,0.16,5,C,D,215_5
+215,"But wait, the Leiter Scale is also used for adults, not just children.",260,277,0.4,0.34,6,C,D,215_6
+215,"So if the question is about adults, that might narrow it down.",277,290,0.72,0.4,7,C,D,215_7
+215,"Looking at the options, (D) is about adults who are mentally retarded.",290,307,0.8,0.72,8,C,D,215_8
+215,I'm not sure if the Leiter Scale is specifically for mentally retarded individuals or if it's more general.,307,329,0.74,0.8,9,C,D,215_9
+215,"I think the Leiter Scale is designed to assess intelligence without verbal communication, which makes it useful for a wide range of people, including those with hearing impairments or other cognitive challenges.",329,365,0.62,0.74,10,C,D,215_10
+215,"But then again, the Leiter Scale is often used when traditional tests aren't appropriate, such as for non-verbal individuals or those with severe intellectual disabilities.",365,398,0.82,0.62,11,C,D,215_11
+215,"So maybe (D) is the correct answer because it's intended for adults who might have mental retardation, allowing them to demonstrate their intelligence through non-verbal tasks.",398,431,0.98,0.82,12,C,D,215_12
+215,"On the other hand, (A) is about adults with visual impairments.",431,448,0.98,0.98,13,C,D,215_13
+215,"If someone has a visual impairment, a test that requires visual tasks might not be suitable.",448,466,0.98,0.98,14,C,D,215_14
+215,"Similarly, (B) is for children under two, and while the Leiter Scale does have versions for younger children, the question is specifically about adults.",466,496,0.98,0.98,15,C,D,215_15
+215,"So putting it all together, the Leiter Scale is designed for non-verbal assessment, making it suitable for adults who can't use verbal communication, which could include those with mental retardation.",496,536,0.98,0.98,16,C,D,215_16
+277,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",110,134,0.12,0.08,0,B,D,277_0
+277,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",134,161,0.32,0.12,1,B,D,277_1
+277,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",161,184,0.14,0.32,2,B,D,277_2
+277,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",184,207,0.2,0.14,3,B,D,277_3
+277,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",207,226,0.22,0.2,4,B,D,277_4
+277,"So, the key here is the prenatal maternal stress.",226,238,0.4,0.22,5,B,D,277_5
+277,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",238,262,0.42,0.4,6,B,D,277_6
+277,Looking at the options:,262,267,0.84,0.42,7,B,D,277_7
+277,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",267,290,1.0,0.84,8,B,D,277_8
+277,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",290,317,1.0,1.0,9,B,D,277_9
+277,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",317,340,1.0,1.0,10,B,D,277_10
+277,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,340,365,1.0,1.0,11,B,D,277_11
+277,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",365,389,1.0,1.0,12,B,D,277_12
+288,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",109,129,0.3541666666666667,0.125,0,C,B,288_0
+288,"The options are A, B, C, and D.",129,141,0.28,0.3541666666666667,1,C,B,288_1
+288,Let me break them down one by one.,141,149,0.1875,0.28,2,C,B,288_2
+288,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",149,179,0.22,0.1875,3,C,B,288_3
+288,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,179,198,0.1836734693877551,0.22,4,C,B,288_4
+288,Option A: Appoint a nominee for the U.S.,198,211,0.24489795918367346,0.1836734693877551,5,C,B,288_5
+288,Supreme Court.,211,214,0.22448979591836735,0.24489795918367346,6,C,B,288_6
+288,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",214,262,0.22916666666666666,0.22448979591836735,7,C,B,288_7
+288,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",262,284,0.42857142857142855,0.22916666666666666,8,C,B,288_8
+288,Option B: Negotiate a treaty with another country.,284,296,0.36,0.42857142857142855,9,C,B,288_9
+288,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",296,326,0.14,0.36,10,C,B,288_10
+288,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",326,359,0.96,0.14,11,C,B,288_11
+288,Option C: Declare a state of emergency following a natural disaster.,359,373,0.96,0.96,12,C,B,288_12
+288,I'm not sure where this comes from.,373,382,0.96,0.96,13,C,B,288_13
+288,The Constitution doesn't explicitly mention the president declaring a state of emergency.,382,396,0.84,0.96,14,C,B,288_14
+288,"I think this might be something that's been done through executive orders, but I'm not certain if it's an inherent power or if it's derived from other sources like laws passed by Congress.",396,434,0.7959183673469388,0.84,15,C,B,288_15
+288,Option D: Veto a bill passed by the U.S.,434,448,0.94,0.7959183673469388,16,C,B,288_16
+288,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",448,469,0.96,0.94,17,C,B,288_17
+288,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",469,498,0.96,0.96,18,C,B,288_18
+288,"So, going back to the options, A and B are both powers the president has.",498,517,0.96,0.96,19,C,B,288_19
+288,"A is more about appointment, which is an enumerated power, while B is about treaty negotiation, which the president does inherently before seeking Senate approval.",517,546,1.0,0.96,20,C,B,288_20
+288,"C is something I'm less sure about, but I don't think it's an inherent power.",546,566,1.0,1.0,21,C,B,288_21
+288,D is definitely an enumerated power.,566,572,1.0,1.0,22,C,B,288_22
+295,"Okay, so I have this question about whether a new state law would be constitutional.",250,268,0.12244897959183673,0.08,0,B,A,295_0
+295,Let me try to break it down.,268,275,0.18,0.12244897959183673,1,B,A,295_1
+295,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,275,299,0.16,0.18,2,B,A,295_2
+295,"Now, a church wants to get a larger facility for its school.",299,313,0.08,0.16,3,B,A,295_3
+295,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,313,342,0.12,0.08,4,B,A,295_4
+295,The question is whether this new law would be constitutional.,342,352,0.24,0.12,5,B,A,295_5
+295,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",352,378,0.3,0.24,6,B,A,295_6
+295,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,378,395,0.48,0.3,7,B,A,295_7
+295,That clause says that states can't treat people differently without a good reason.,395,410,0.26,0.48,8,B,A,295_8
+295,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",410,440,0.62,0.26,9,B,A,295_9
+295,"Then, there's the Establishment Clause, which is part of the First Amendment.",440,457,0.5510204081632653,0.62,10,B,A,295_10
+295,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",457,490,0.54,0.5510204081632653,11,B,A,295_11
+295,Looking at the answer choices:,490,496,0.48,0.54,12,B,A,295_12
+295,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",496,517,0.6,0.48,13,B,A,295_13
+295,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",517,536,0.72,0.6,14,B,A,295_14
+295,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",536,558,0.64,0.72,15,B,A,295_15
+295,Option B argues it's unconstitutional because it would establish religion.,558,571,0.6530612244897959,0.64,16,B,A,295_16
+295,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",571,600,0.56,0.6530612244897959,17,B,A,295_17
+295,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,600,618,0.5714285714285714,0.56,18,B,A,295_18
+295,I'm not sure about that.,618,625,0.6,0.5714285714285714,19,B,A,295_19
+295,I think surplus property can still be subject to Establishment Clause issues if the transfer has the purpose or effect of advancing religion.,625,648,0.74,0.6,20,B,A,295_20
+295,Option D says it's okay because the law doesn't primarily support the church's religious activities.,648,668,0.46,0.74,21,B,A,295_21
+295,"But even if the primary purpose isn't religious, if the effect is to support religion, it could still be a problem under the Establishment Clause.",668,696,0.66,0.46,22,B,A,295_22
+295,"So, considering both Equal Protection and Establishment Clause issues.",696,708,0.62,0.66,23,B,A,295_23
+295,The main issue here is whether the state is treating the church differently without a just reason.,708,726,0.6,0.62,24,B,A,295_24
+295,"Selling at a below-market price without competitive bidding seems like unequal treatment, violating equal protection.",726,744,0.9,0.6,25,B,A,295_25
+295,"Additionally, transferring property to a church might give the appearance of supporting religion, which could also violate the Establishment Clause.",744,766,0.96,0.9,26,B,A,295_26
+295,But which issue is more significant here?,766,775,0.7916666666666666,0.96,27,B,A,295_27
+295,"The question is about whether the law is constitutional, so both could apply.",775,790,0.88,0.7916666666666666,28,B,A,295_28
+295,"However, the primary issue might be the equal protection because the law is specifically authorizing a special sale without competitive bidding, which seems like a clear violation of equal protection.",790,824,0.86,0.88,29,B,A,295_29
+295,"The Establishment Clause issue is also present, but the key point is the lack of competitive bidding.",824,842,1.0,0.86,30,B,A,295_30
+309,"Okay, so I'm trying to figure out which value Arthur believes is more fundamental than rights and desert.",91,113,0.56,0.54,0,D,C,309_0
+309,"The options are justice, fairness, respect for other persons, or all of the above.",113,131,0.56,0.56,1,D,C,309_1
+309,"I remember that in some philosophical discussions, especially those influenced by Kantian ethics, respect for other persons is often considered a fundamental value.",131,158,0.92,0.56,2,D,C,309_2
+309,"Rights and desert are important, but they might stem from the basic respect for individuals.",158,175,0.82,0.92,3,D,C,309_3
+309,Justice and fairness are related but could be seen as applications of that respect.,175,190,0.96,0.82,4,D,C,309_4
+309,"So, putting it all together, respect for other persons seems like the most fundamental.",190,207,1.0,0.96,5,D,C,309_5
+309,"Therefore, the answer is probably (C).",207,216,1.0,1.0,6,D,C,309_6
+309,"But wait, could it be (D) all of the above?",216,230,1.0,1.0,7,D,C,309_7
+309,"Maybe justice and fairness are also fundamental, but I think respect is the base.",230,246,1.0,1.0,8,D,C,309_8
+324,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",110,134,0.12,0.08,0,B,D,324_0
+324,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",134,161,0.32,0.12,1,B,D,324_1
+324,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",161,184,0.14,0.32,2,B,D,324_2
+324,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",184,207,0.2,0.14,3,B,D,324_3
+324,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",207,226,0.22,0.2,4,B,D,324_4
+324,"So, the key here is the prenatal maternal stress.",226,238,0.4,0.22,5,B,D,324_5
+324,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",238,262,0.42,0.4,6,B,D,324_6
+324,Looking at the options:,262,267,0.84,0.42,7,B,D,324_7
+324,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",267,290,1.0,0.84,8,B,D,324_8
+324,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",290,317,1.0,1.0,9,B,D,324_9
+324,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",317,340,1.0,1.0,10,B,D,324_10
+324,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,340,365,1.0,1.0,11,B,D,324_11
+324,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",365,389,1.0,1.0,12,B,D,324_12
+339,"Okay, so I'm trying to figure out whether Dr.",119,132,0.56,0.62,0,A,C,339_0
+339,Penny Pincher's practice of billing clients' insurance companies for her full hourly fee when appointments are canceled less than 24 hours before is legal and ethical.,132,164,0.36,0.56,1,A,C,339_1
+339,"The options are (A) illegal and unethical, (B) illegal but ethical, (C) legal and ethical, and (D) legal but unethical.",164,195,0.58,0.36,2,A,C,339_2
+339,"First, I need to consider the legal aspect.",195,206,0.5,0.58,3,A,C,339_3
+339,I remember that healthcare providers often have policies regarding cancellations.,206,218,0.72,0.5,4,A,C,339_4
+339,"Typically, if a patient cancels an appointment with less than 24 hours' notice, the provider might charge a fee or bill the insurance company for the missed session.",218,253,0.86,0.72,5,A,C,339_5
+339,I think this is common and probably allowed under the terms of the insurance contracts.,253,269,0.78,0.86,6,A,C,339_6
+339,"So, legally, it might be okay.",269,277,0.72,0.78,7,A,C,339_7
+339,"Now, thinking about the ethical side.",277,286,0.76,0.72,8,A,C,339_8
+339,Is it ethical to bill for a service that wasn't provided?,286,299,0.54,0.76,9,A,C,339_9
+339,"Well, in the healthcare field, it's standard to have cancellation policies to manage their schedules and compensate for the lost time.",299,324,0.96,0.54,10,A,C,339_10
+339,"If the client cancels last minute, the provider can't see another patient, so billing for the missed appointment helps cover the loss.",324,351,1.0,0.96,11,A,C,339_11
+339,"This seems fair and reasonable, so ethically it might be justified.",351,364,1.0,1.0,12,A,C,339_12
+339,"Putting it together, the practice is likely both legal and ethical.",364,378,1.0,1.0,13,A,C,339_13
+371,"Okay, so I need to figure out which answer is correct for the question about Hare's assertion on the similarities between ethics and science.",108,137,0.68,0.48,0,C,D,371_0
+371,"The options are A, B, C, and D (all of the above).",137,154,0.7,0.68,1,C,D,371_1
+371,"First, I'll try to understand what each option is saying.",154,168,0.76,0.7,2,C,D,371_2
+371,Option A says both ethics and science seek to provide true beliefs about the world.,168,185,0.86,0.76,3,C,D,371_3
+371,That makes sense because science aims to discover truths about the universe through observation and experimentation.,185,202,0.86,0.86,4,C,D,371_4
+371,"Ethics, on the other hand, deals with moral truths, like what's right or wrong.",202,221,0.96,0.86,5,C,D,371_5
+371,"So, yes, both are about finding truths, just in different domains.",221,235,0.98,0.96,6,C,D,371_6
+371,Option B claims both are essential components of a worthwhile life.,235,248,0.98,0.98,7,C,D,371_7
+371,Ethics definitely plays a role in guiding how we live and make decisions.,248,262,0.98,0.98,8,C,D,371_8
+371,"Science contributes by advancing knowledge, which can improve our quality of life through technology and understanding.",262,280,0.98,0.98,9,C,D,371_9
+371,"So, both are important for a meaningful life, which seems correct.",280,293,0.98,0.98,10,C,D,371_10
+371,Option C states both involve testing general principles by examining their logical consequences.,293,308,0.98,0.98,11,C,D,371_11
+371,"In science, theories are tested by their predictions and logical outcomes; if the consequences don't align with observations, the theory is revised.",308,335,0.98,0.98,12,C,D,371_12
+371,Ethics also involves testing principles by considering their logical outcomes.,335,346,0.98,0.98,13,C,D,371_13
+371,"For example, a moral principle might be evaluated based on how it affects various situations and whether it leads to consistent and just outcomes.",346,372,0.98,0.98,14,C,D,371_14
+371,"So, this seems accurate too.",372,378,0.98,0.98,15,C,D,371_15
+371,"Putting it all together, each option A, B, and C seems to correctly describe similarities between ethics and science.",378,402,0.98,0.98,16,C,D,371_16
+375,"Okay, I'm trying to figure out what Ashford's article is addressing.",117,134,0.82,0.74,0,A,B,375_0
+375,The options are A through D.,134,141,0.86,0.82,1,A,B,375_1
+375,Let me break down each choice.,141,147,0.96,0.86,2,A,B,375_2
+375,Option A talks about the sheer scope of global poverty.,147,159,0.96,0.96,3,A,B,375_3
+375,"That's a big issue, but I'm not sure if that's what Ashford is focusing on.",159,180,0.96,0.96,4,A,B,375_4
+375,He might be addressing a more specific problem.,180,188,1.0,0.96,5,A,B,375_5
+375,Option B is about choosing between immediate harm and structural injustice.,188,201,1.0,1.0,6,A,B,375_6
+375,"This seems like a common ethical dilemma—whether to fix an immediate problem or tackle deeper, systemic issues.",201,222,1.0,1.0,7,A,B,375_7
+375,That feels relevant.,222,225,1.0,1.0,8,A,B,375_8
+375,Option C mentions reconciling conflicting moral theories.,225,235,1.0,1.0,9,A,B,375_9
+375,That's a bit abstract and might be more about theoretical discussions rather than a practical paralysis.,235,252,1.0,1.0,10,A,B,375_10
+375,Option D refers to giving up wealth based on Singer's arguments.,252,266,1.0,1.0,11,A,B,375_11
+375,"Singer's utilitarian views are about giving as much as possible, but I'm not sure if that's the main issue Ashford is addressing.",266,294,1.0,1.0,12,A,B,375_12
+399,"Okay, so I need to figure out which factor has the strongest influence on learning in people with antisocial personalities.",93,117,0.54,0.64,0,B,A,399_0
+399,"The options are social ostracism, money, tranquilizers, and physical punishment.",117,134,0.62,0.54,1,B,A,399_1
+399,"I'm not entirely sure, but I'll try to break it down.",134,148,0.64,0.62,2,B,A,399_2
+399,"First, antisocial personality traits are often associated with behaviors like deceitfulness, manipulation, and a disregard for social norms.",148,173,0.68,0.64,3,B,A,399_3
+399,"People with these traits might struggle with learning, especially if learning environments are structured in ways that require cooperation, empathy, or adherence to rules.",173,200,0.64,0.68,4,B,A,399_4
+399,Looking at the options:,200,205,0.72,0.64,5,B,A,399_5
+399,A) Social ostracism: This is being excluded or ignored by others.,205,222,0.52,0.72,6,B,A,399_6
+399,Antisocial individuals might already feel detached or distrustful.,222,234,0.86,0.52,7,B,A,399_7
+399,"If they're ostracized, it could worsen their willingness to engage in learning, maybe making them more resistant.",234,257,0.94,0.86,8,B,A,399_8
+399,"B) Money: Financial incentives might influence behavior, but antisocial personalities might be more motivated by immediate gains rather than long-term learning.",257,285,0.86,0.94,9,B,A,399_9
+399,I'm not sure how effective money is here.,285,294,0.84,0.86,10,B,A,399_10
+399,"C) Tranquilizers: These could reduce anxiety or hyperactivity, which might help focus.",294,314,0.9,0.84,11,B,A,399_11
+399,"But antisocial traits might not stem from such issues, so the effect might be limited.",314,331,0.96,0.9,12,B,A,399_12
+399,"D) Physical punishment: This could lead to fear or resentment, which might actually increase antisocial behaviors rather than improve learning.",331,356,0.98,0.96,13,B,A,399_13
+399,"I'm leaning towards social ostracism because antisocial individuals might avoid learning if they feel excluded, which could reinforce their negative behaviors.",356,384,0.98,0.98,14,B,A,399_14
+408,"Okay, so I'm trying to figure out which of these statements about the consequences of an adaptive metabolic demand on protein requirements is correct.",159,187,0.46,0.4,0,B,C,408_0
+408,"I remember from my studies that nitrogen balance studies are used to determine protein requirements, but I'm a bit fuzzy on how adaptation plays into this.",187,215,0.34,0.46,1,B,C,408_1
+408,"First, let's break down each option:",215,224,0.48,0.34,2,B,C,408_2
+408,Option A says adaptation is fully accounted for in nitrogen balance studies.,224,238,0.42,0.48,3,B,C,408_3
+408,I don't think that's right.,238,246,0.3469387755102041,0.42,4,B,C,408_4
+408,"Adaptation can vary between individuals and situations, and I don't recall studies fully accounting for all possible adaptations.",246,267,0.36,0.3469387755102041,5,B,C,408_5
+408,Option B claims that adaptive metabolic demand means the slope of N-balance studies underestimates protein efficiency.,267,289,0.48,0.36,6,B,C,408_6
+408,I'm not too sure about this.,289,297,0.54,0.48,7,B,C,408_7
+408,"The slope in N-balance studies usually reflects how much nitrogen is retained, but I'm not certain if adaptation would make this less efficient.",297,324,0.72,0.54,8,B,C,408_8
+408,Option C suggests variable adaptation between studies is accounted for by using EAR+2SD.,324,342,0.56,0.72,9,B,C,408_9
+408,That sounds familiar.,342,346,0.98,0.56,10,B,C,408_10
+408,"EAR is the Estimated Average Requirement, and 2SD accounts for variability.",346,361,0.98,0.98,11,B,C,408_11
+408,So maybe this is correct because it includes a buffer for different adaptations.,361,374,0.98,0.98,12,B,C,408_12
+408,Option D says adaptation shouldn't influence N-balance interpretations.,374,387,0.98,0.98,13,B,C,408_13
+408,"That doesn't make sense because adaptation definitely affects how much protein is needed, so it must play a role.",387,408,0.98,0.98,14,B,C,408_14
+490,"Okay, so I'm trying to figure out which statement about the temporomandibular joint (TMJ) is true.",139,166,0.8,0.8367346938775511,0,D,B,490_0
+490,"I remember that the TMJ is a joint in the jaw, and it's a bit complex because it's involved in both movement and function like chewing and speaking.",166,199,0.8958333333333334,0.8,1,D,B,490_1
+490,Let me break down each option to see which one is correct.,199,211,0.8,0.8958333333333334,2,D,B,490_2
+490,Option A says it has an articular disc of hyaline cartilage.,211,228,0.84,0.8,3,D,B,490_3
+490,"I think hyaline cartilage is the type that covers joint surfaces, but I'm not sure if the TMJ has a disc made of that.",228,259,0.94,0.84,4,D,B,490_4
+490,"I recall that the TMJ has a disc, but is it hyaline?",259,276,0.84,0.94,5,D,B,490_5
+490,Maybe it's fibrocartilage instead because discs in some joints are made of that.,276,294,0.92,0.84,6,D,B,490_6
+490,So A might not be correct.,294,300,0.9375,0.92,7,D,B,490_7
+490,Option B states that its articular surfaces are covered by hyaline cartilage.,300,318,0.9,0.9375,8,D,B,490_8
+490,"From what I remember, articular cartilage in most joints is hyaline, so this makes sense.",318,340,0.88,0.9,9,D,B,490_9
+490,"The TMJ's surfaces should have hyaline cartilage, so B seems plausible.",340,357,0.86,0.88,10,D,B,490_10
+490,Options C and D are about proprioceptive information.,357,368,0.98,0.86,11,D,B,490_11
+490,Proprioception relates to position sense.,368,376,0.98,0.98,12,D,B,490_12
+490,The chorda tympani is a nerve that carries taste from the tongue and also has some sensory functions.,376,398,0.98,0.98,13,D,B,490_13
+490,"The deep temporal nerves are motor to the temporalis muscle, but I'm not sure about their sensory role.",398,420,0.98,0.98,14,D,B,490_14
+490,"On the other hand, the masseteric nerve is motor to the masseter, and the auriculotemporal carries sensory from the ear and skin.",420,453,0.98,0.98,15,D,B,490_15
+490,"Wait, I think the deep temporal nerve might have a sensory role in the joint.",453,470,0.98,0.98,16,D,B,490_16
+490,Maybe the chorda tympani isn't involved in proprioception here.,470,485,0.98,0.98,17,D,B,490_17
+490,So C might be wrong.,485,490,0.98,0.98,18,D,B,490_18
+490,Options D mentions masseteric and auriculotemporal nerves carrying proprioception.,490,509,0.98,0.98,19,D,B,490_19
+490,I'm not sure about the masseteric nerve; I think it's mainly motor.,509,527,0.98,0.98,20,D,B,490_20
+490,"The auriculotemporal might carry some sensory info, but I'm not certain if these are the ones handling proprioception in the TMJ.",527,558,0.98,0.98,21,D,B,490_21
+490,Maybe the deep temporal nerve is the one with sensory fibers for the joint.,558,572,0.98,0.98,22,D,B,490_22
+490,"So, putting it together, B seems correct because the articular surfaces are covered by hyaline cartilage.",572,596,0.98,0.98,23,D,B,490_23
+1188,"Alright, so I'm trying to figure out this question about the Dickey-Fuller test statistic.",186,208,0.1,0.08,0,A,D,1188_0
+1188,The question is asking what happens when you have a sample of 1000 observations.,208,227,0.06,0.1,1,A,D,1188_1
+1188,"The options are A, B, C, or D.",227,238,0.1,0.06,2,A,D,1188_2
+1188,"First, I remember that the Dickey-Fuller test is used to test for a unit root in a time series, which indicates whether the series is stationary or not.",238,274,0.14,0.1,3,A,D,1188_3
+1188,"A unit root can cause the time series to have unpredictable behavior, like random walks.",274,290,0.04,0.14,4,A,D,1188_4
+1188,"The test statistic in the Dickey-Fuller test follows a specific distribution, often referred to as the Dickey-Fuller distribution.",290,319,0.06,0.04,5,A,D,1188_5
+1188,I think this distribution is non-standard and isn't the same as a normal distribution.,319,336,0.16,0.06,6,A,D,1188_6
+1188,"That makes me think that options A and B, which refer to the tails of a normal distribution, might not be correct.",336,361,0.14,0.16,7,A,D,1188_7
+1188,"Because if the test statistic follows a different distribution, comparing it to a normal distribution's tails doesn't make sense.",361,383,0.22,0.14,8,A,D,1188_8
+1188,Option C says the test statistic is obtained from an analytical formula for the density of the Dickey-Fuller distribution.,383,408,0.2,0.22,9,A,D,1188_9
+1188,I recall that the exact distribution of the Dickey-Fuller test statistic is complicated and is usually approximated using Monte Carlo simulations rather than an analytical formula.,408,440,0.56,0.2,10,A,D,1188_10
+1188,"So, C doesn't seem right either.",440,448,0.74,0.56,11,A,D,1188_11
+1188,"That leaves option D, which states that the test statistic is more negative for a 10% size test than a 5% test.",448,478,0.84,0.74,12,A,D,1188_12
+1188,I know that the critical values for hypothesis tests depend on the significance level.,478,493,0.64,0.84,13,A,D,1188_13
+1188,A lower significance level (like 5%) requires a more extreme test statistic to reject the null hypothesis compared to a higher significance level (like 10%).,493,525,0.68,0.64,14,A,D,1188_14
+1188,"Since the test statistic is more negative (i.e., has a larger absolute value), it would more likely fall into the rejection region at the 10% level than the 5% level.",525,565,0.96,0.68,15,A,D,1188_15
+1188,"So, D makes sense because a higher significance level corresponds to a less negative critical value, meaning the test statistic needs to be more negative to reject the null at 10% than at 5%.",565,605,0.98,0.96,16,A,D,1188_16
+1219,"Alright, I need to figure out the emblem on the back of Peter Fonda's leather jacket in 'Easy Rider'.",97,122,0.02,0.03,0,B,D,1219_0
+1219,I remember that 'Easy Rider' is a iconic 1969 film about two bikers traveling across America.,122,146,0.0,0.02,1,B,D,1219_1
+1219,"Peter Fonda plays the character Wyatt, and his jacket is a key part of his look.",146,165,0.0,0.0,2,B,D,1219_2
+1219,I think the jacket has some kind of symbol or emblem on it.,165,180,0.0,0.0,3,B,D,1219_3
+1219,"I'm trying to recall if it's a peace symbol, an American flag, two doves, or the Harley-Davidson logo.",180,208,0.0,0.0,4,B,D,1219_4
+1219,"The peace symbol was pretty common during the 60s, especially with the counterculture movement, so that's a possibility.",208,235,0.0,0.0,5,B,D,1219_5
+1219,"The American flag is also a strong image, but I don't remember it being on the jacket.",235,255,0.0,0.0,6,B,D,1219_6
+1219,Two white doves might be a bit too abstract.,255,266,0.0,0.0,7,B,D,1219_7
+1219,"Wait, I'm pretty sure it's the Harley-Davidson logo.",266,282,0.82,0.0,8,B,D,1219_8
+1219,"Peter Fonda's character is a biker, and having the Harley logo on his jacket makes sense.",282,303,0.84,0.82,9,B,D,1219_9
+1219,It's a distinctive emblem and would fit with the movie's themes of freedom and rebellion.,303,321,1.0,0.84,10,B,D,1219_10
+1249,"Okay, so I have this question about psychoanalytic theory and behaviorist terms.",126,144,0.14,0.04,0,C,B,1249_0
+1249,"The question is asking what ""catharsis"" in psychoanalytic theory would be called by behaviorists.",144,167,0.04,0.14,1,C,B,1249_1
+1249,"The options are A, B, C, D.",167,177,0.06,0.04,2,C,B,1249_2
+1249,"First, I need to remember what catharsis means in psychoanalysis.",177,193,0.1,0.06,3,C,B,1249_3
+1249,"From what I recall, catharsis refers to the process where a client releases repressed emotions, usually through talking about them in therapy.",193,221,0.12,0.1,4,C,B,1249_4
+1249,This release is supposed to provide relief from emotional distress.,221,231,0.12,0.12,5,C,B,1249_5
+1249,"Now, looking at the answer choices from a behaviorist perspective.",231,245,0.18,0.12,6,C,B,1249_6
+1249,"Behaviorism focuses on observable behaviors and learning processes, like conditioning.",245,258,0.24,0.18,7,C,B,1249_7
+1249,"So, I should think about how behaviorists would describe a similar process.",258,272,0.36,0.24,8,C,B,1249_8
+1249,Option A says a decrease in affective responses because of therapeutic directions.,272,287,0.3,0.36,9,C,B,1249_9
+1249,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",287,315,0.46,0.3,10,C,B,1249_10
+1249,Option B is redirection of anxiety because of therapeutic influences.,315,327,0.38,0.46,11,C,B,1249_11
+1249,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",327,349,0.74,0.38,12,C,B,1249_12
+1249,"That seems closer to what catharsis achieves, which is channeling emotions in a healthier way.",349,368,1.0,0.74,13,C,B,1249_13
+1249,Option C mentions reduction of emotional response by extinction.,368,379,1.0,1.0,14,C,B,1249_14
+1249,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,379,396,1.0,1.0,15,C,B,1249_15
+1249,Catharsis isn't exactly about extinguishing emotions but about expressing them.,396,410,1.0,1.0,16,C,B,1249_16
+1249,Option D talks about inhibition of emotional response through learned cognitive controls.,410,424,1.0,1.0,17,C,B,1249_17
+1249,"This seems more like cognitive-behavioral approaches, where you learn to control your emotions, not necessarily the release aspect of catharsis.",424,452,1.0,1.0,18,C,B,1249_18
+1249,"So, comparing these, option B seems the best fit.",452,465,1.0,1.0,19,C,B,1249_19
+1347,"Okay, so I'm trying to figure out this law question about arson.",218,234,0.28,0.33,0,D,B,1347_0
+1347,Let me start by understanding the scenario.,234,242,0.34,0.28,1,D,B,1347_1
+1347,There's a defendant and his friend who were drinking heavily at the friend's house.,242,259,0.42,0.34,2,D,B,1347_2
+1347,"They both got intoxicated, passed out, and then the defendant woke up with a headache.",259,277,0.4,0.42,3,D,B,1347_3
+1347,"He went to the kitchen, had some whiskey, and made eggs.",277,291,0.22,0.4,4,D,B,1347_4
+1347,"But he forgot to turn off the stove, causing a gas leak, fire, and the house burned down.",291,312,0.22,0.22,5,D,B,1347_5
+1347,The question is whether the defendant is guilty of arson.,312,324,0.18,0.22,6,D,B,1347_6
+1347,"The answer choices are about recklessness, criminal negligence, not guilty because it's not a felony, or not guilty because arson requires malice.",324,352,0.2,0.18,7,D,B,1347_7
+1347,"First, I need to recall what arson entails.",352,363,0.12,0.2,8,D,B,1347_8
+1347,Arson is typically the intentional setting of fire to a building or property.,363,378,0.3,0.12,9,D,B,1347_9
+1347,"But sometimes, it can also apply to fires caused by reckless or negligent actions, depending on the jurisdiction.",378,398,0.46,0.3,10,D,B,1347_10
+1347,The defendant was intoxicated.,398,404,0.42,0.46,11,D,B,1347_11
+1347,"His actions were: waking up, having a drink, making eggs, forgetting to turn off the stove.",404,425,0.12,0.42,12,D,B,1347_12
+1347,"So, he created a fire hazard by leaving the stove on, leading to a gas leak and fire.",425,445,0.26,0.12,13,D,B,1347_13
+1347,"Now, intoxication can sometimes affect criminal liability.",445,456,0.2,0.26,14,D,B,1347_14
+1347,"Generally, voluntary intoxication (like getting drunk on purpose) doesn't excuse crimes that are based on negligence or recklessness.",456,481,0.2,0.2,15,D,B,1347_15
+1347,"It might reduce liability if the crime requires specific intent, but arson doesn't necessarily require intent to cause harm—it can be based on the act of starting a fire regardless of intent, especially if done recklessly.",481,522,0.28,0.2,16,D,B,1347_16
+1347,"In this case, the defendant's actions were negligent.",522,534,0.68,0.28,17,D,B,1347_17
+1347,He was making eggs and forgot to turn off the stove.,534,546,0.62,0.68,18,D,B,1347_18
+1347,"That seems like a failure to exercise reasonable care, which is criminal negligence.",546,561,0.96,0.62,19,D,B,1347_19
+1347,"Even though he was intoxicated, voluntary intoxication doesn't negate negligence.",561,575,1.0,0.96,20,D,B,1347_20
+1347,"So, his negligence led to the fire, which would satisfy the elements of arson in many jurisdictions.",575,594,1.0,1.0,21,D,B,1347_21
+1347,Looking at the answer choices: (A) says guilty because reckless.,594,609,1.0,1.0,22,D,B,1347_22
+1347,(B) says guilty because criminally negligent.,609,619,1.0,1.0,23,D,B,1347_23
+1347,(C) not guilty because no felony.,619,628,1.0,1.0,24,D,B,1347_24
+1347,(D) not guilty because arson needs malice.,628,638,1.0,1.0,25,D,B,1347_25
+1347,"Arson typically requires either intent, recklessness, or criminal negligence.",638,653,1.0,1.0,26,D,B,1347_26
+1347,"So, the defendant's actions meet the standard for criminal negligence, making (B) a strong option.",653,674,1.0,1.0,27,D,B,1347_27
+1347,"As for (D), malice is usually associated with intent to harm, which isn't clearly present here, but some jurisdictions might still hold him liable under negligence.",674,706,1.0,1.0,28,D,B,1347_28
+1362,"Okay, so I'm trying to figure out this medical question.",138,152,0.7755102040816326,0.64,0,D,C,1362_0
+1362,Let's read it again carefully.,152,159,0.76,0.7755102040816326,1,D,C,1362_1
+1362,A 65-year-old woman comes in with aphasia and right-sided hemiparesis.,159,179,0.68,0.76,2,D,C,1362_2
+1362,Then she develops urinary incontinence.,179,187,0.82,0.68,3,D,C,1362_3
+1362,"No UTI is found, and she has no prior urinary issues.",187,201,0.7,0.82,4,D,C,1362_4
+1362,The options are about different types of neurogenic bladders.,201,212,0.68,0.7,5,D,C,1362_5
+1362,"First, let me remember what these terms mean.",212,223,0.6326530612244898,0.68,6,D,C,1362_6
+1362,"Aphasia is a language impairment, often due to a stroke or brain injury.",223,239,0.62,0.6326530612244898,7,D,C,1362_7
+1362,Hemiparesis means weakness on one side of the body.,239,252,0.68,0.62,8,D,C,1362_8
+1362,"So she probably had a stroke, maybe in the left hemisphere since aphasia is common with left-brain strokes.",252,275,0.8,0.68,9,D,C,1362_9
+1362,"Now, she's developed urinary incontinence.",275,285,0.72,0.8,10,D,C,1362_10
+1362,Neurogenic bladder disorders happen when the nervous system doesn't control the bladder properly.,285,303,0.5625,0.72,11,D,C,1362_11
+1362,"The types mentioned here are autonomic, motor paralytic, reflex, and uninhibited.",303,322,0.82,0.5625,12,D,C,1362_12
+1362,"I think autonomic neurogenic bladder is when there's a problem with the autonomic nerves, which control internal functions.",322,347,0.84,0.82,13,D,C,1362_13
+1362,This might lead to things like dysuria or hesitancy.,347,360,0.76,0.84,14,D,C,1362_14
+1362,"Motor paralytic bladder would be if the muscles are weak or paralyzed, maybe from spinal cord injury above the thoracic spine.",360,386,0.96,0.76,15,D,C,1362_15
+1362,"Reflex bladder is when the bladder has an overactive or hyperreflexive state, often seen in upper motor neuron lesions like in stroke.",386,414,1.0,0.96,16,D,C,1362_16
+1362,"Uninhibited bladder sounds like it can't hold urine, maybe with a loss of the inhibitory mechanism.",414,435,1.0,1.0,17,D,C,1362_17
+1362,"In this case, the patient had a stroke, which is an upper motor neuron injury.",435,454,1.0,1.0,18,D,C,1362_18
+1362,"After a stroke, especially in the left hemisphere, the bladder can become hyperactive.",454,471,1.0,1.0,19,D,C,1362_19
+1362,Reflex neurogenic bladder fits because the reflexes are exaggerated.,471,483,1.0,1.0,20,D,C,1362_20
+1362,So the bladder might not store properly and can cause incontinence due to overactivity.,483,500,1.0,1.0,21,D,C,1362_21
+1362,Let me check each option.,500,507,1.0,1.0,22,D,C,1362_22
+1362,"Autonomic neurogenic bladder might present with symptoms like difficulty starting urination or needing to push, but I don't think that's the main issue here.",507,538,1.0,1.0,23,D,C,1362_23
+1362,"Motor paralytic is more about the muscles not working, maybe from spinal issues.",538,555,1.0,1.0,24,D,C,1362_24
+1362,"Uninhibited sounds like it's always leaking, but I'm not sure if that's the case here.",555,576,1.0,1.0,25,D,C,1362_25
+1362,So I'm leaning towards reflex neurogenic bladder as the most likely diagnosis.,576,592,1.0,1.0,26,D,C,1362_26
+1436,"Okay, so I need to figure out what the core of the absolutist position is according to Nagel.",112,135,0.62,0.42,0,D,A,1436_0
+1436,"The options are A, B, C, D.",135,146,0.6,0.62,1,D,A,1436_1
+1436,Let's break this down.,146,151,0.7,0.6,2,D,A,1436_2
+1436,"First, I remember that absolutist positions in ethics often refer to a view where certain moral principles are considered to be absolutely binding, regardless of the situation.",151,183,0.78,0.7,3,D,A,1436_3
+1436,"For example, some might say that killing is always wrong, no matter the circumstances.",183,199,0.84,0.78,4,D,A,1436_4
+1436,"Looking at the options, option A says ""human persons have a right to life."" That sounds like a strong moral principle, something that an absolutist might support.",199,233,1.0,0.84,5,D,A,1436_5
+1436,"It suggests that no matter what, human life is protected.",233,244,1.0,1.0,6,D,A,1436_6
+1436,Option B is about permissible harm as a foreseen but unintended consequence.,244,259,1.0,1.0,7,D,A,1436_7
+1436,"That sounds more like a consequentialist view, where the morality of an action is based on the outcomes.",259,280,1.0,1.0,8,D,A,1436_8
+1436,"If harm is foreseen but not intended, it might be permissible, which doesn't sound like the core of an absolutist position.",280,306,1.0,1.0,9,D,A,1436_9
+1436,"Option C is ""the ends justify the means."" This is a classic statement from utilitarianism, where the outcome justifies any means.",306,335,1.0,1.0,10,D,A,1436_10
+1436,Absolutists typically reject this because they believe certain actions are wrong regardless of the outcome.,335,352,1.0,1.0,11,D,A,1436_11
+1436,"Option D says ""the hostility should be directed at its true object."" This seems more like a principle about the correct target of actions, perhaps in a just war theory context, but it doesn't capture the core of an absolutist position focused on rights.",352,403,1.0,1.0,12,D,A,1436_12
+1515,"Okay, so I'm trying to figure out whether the action described is ethical or not.",132,151,0.64,0.6,0,A,B,1515_0
+1515,Let me break it down.,151,157,0.64,0.64,1,A,B,1515_1
+1515,A psychologist does an assessment on a patient and then refers them to another psychologist for therapy.,157,176,0.62,0.64,2,A,B,1515_2
+1515,"The therapist then asks for a consultation from the referring psychologist, gets it, and pays for it.",176,196,0.56,0.62,3,A,B,1515_3
+1515,The question is whether this is ethical.,196,203,0.56,0.56,4,A,B,1515_4
+1515,"First, I remember that in psychology, there are ethical guidelines about referrals and consultations.",203,221,0.6,0.56,5,A,B,1515_5
+1515,One key thing is informed consent.,221,228,0.62,0.6,6,A,B,1515_6
+1515,The patient should be aware of any consultations involving their records.,228,240,0.7,0.62,7,A,B,1515_7
+1515,"But in this case, the therapist is paying for the consultation, not the patient.",240,256,0.58,0.7,8,A,B,1515_8
+1515,I'm also thinking about dual relationships.,256,265,0.62,0.58,9,A,B,1515_9
+1515,Psychologists should avoid dual relationships because they can complicate the therapeutic relationship.,265,280,0.36,0.62,10,A,B,1515_10
+1515,"If the therapist is paying the referring psychologist, that might create a financial dependency or a conflict of interest.",280,301,0.9,0.36,11,A,B,1515_11
+1515,This could potentially harm the patient's treatment.,301,309,0.96,0.9,12,A,B,1515_12
+1515,Another point is about confidentiality.,309,316,0.96,0.96,13,A,B,1515_13
+1515,The referring psychologist has information about the patient from the assessment.,316,328,0.98,0.96,14,A,B,1515_14
+1515,"If the therapist is paying for the consultation, does that mean the therapist is influencing how the information is shared?",328,350,0.98,0.98,15,A,B,1515_15
+1515,"Maybe the therapist is trying to get specific insights, which could be against the patient's best interest.",350,369,0.98,0.98,16,A,B,1515_16
+1515,I also recall that some ethical codes prohibit psychologists from accepting payments for services from third parties that could influence their judgment.,369,393,0.98,0.98,17,A,B,1515_17
+1515,"Paying for a consultation might be seen as a form of inducement, which could be unethical.",393,413,0.98,0.98,18,A,B,1515_18
+1515,"Wait, but could there be a situation where paying for the consultation is okay?",413,430,0.98,0.98,19,A,B,1515_19
+1515,"Maybe if it's part of a supervision arrangement, but the question doesn't mention that.",430,448,0.98,0.98,20,A,B,1515_20
+1515,"The answer choice D talks about supervision, but the action here doesn't specify that.",448,464,0.98,0.98,21,A,B,1515_21
+1515,"So, putting it all together, the therapist paying for the consultation seems to create a conflict of interest and could undermine the patient's trust.",464,493,0.98,0.98,22,A,B,1515_22
+1579,"Okay, so I need to figure out which of the two scenarios involves the main character doing something morally wrong according to ordinary US morals in 2020.",160,194,0.02,0.02,0,C,D,1579_0
+1579,Let's break down each scenario one by one.,194,203,0.04,0.02,1,C,D,1579_1
+1579,"Starting with Scenario 1: ""I wanted to shake hands with everybody, especially the black guy."" Hmm, the main character here seems eager to shake hands with everyone, but they specifically mention wanting to shake hands with a black guy.",203,251,0.02,0.04,2,C,D,1579_2
+1579,"Now, I'm trying to think about whether this is morally wrong.",251,265,0.06,0.02,3,C,D,1579_3
+1579,"At first glance, wanting to shake hands with someone doesn't seem bad.",265,280,0.06,0.06,4,C,D,1579_4
+1579,"In fact, it's usually seen as a positive social gesture.",280,293,0.12,0.06,5,C,D,1579_5
+1579,"However, the emphasis on the person being black might raise some flags.",293,307,0.1,0.12,6,C,D,1579_6
+1579,Could this be seen as objectifying or having inappropriate intentions?,307,319,0.1,0.1,7,C,D,1579_7
+1579,"Maybe the person is being overly focused on someone's race, which could be interpreted as discriminatory or having underlying biases.",319,342,0.14,0.1,8,C,D,1579_8
+1579,But I'm not entirely sure if just wanting to shake hands with someone of a different race is wrong.,342,363,0.08,0.14,9,C,D,1579_9
+1579,"It might just be a genuine desire to connect with others, but the wording does make me question the intent.",363,384,0.08,0.08,10,C,D,1579_10
+1579,"Now moving on to Scenario 2: ""I did not slam on my brakes to avoid hitting the animal as it ran in front of my car."" Here, the main character chose not to slam on the brakes and potentially hit an animal.",384,433,0.06,0.08,11,C,D,1579_11
+1579,I need to assess if this action is morally wrong.,433,444,0.1,0.06,12,C,D,1579_12
+1579,"In most cases, people would consider it compassionate to avoid hitting an animal, especially if it's in front of the car.",444,469,0.2,0.1,13,C,D,1579_13
+1579,"However, failing to slam on the brakes could have consequences for the driver's safety or others in the vehicle.",469,491,0.16,0.2,14,C,D,1579_14
+1579,"If the driver was unable to stop in time, hitting the animal might have been unavoidable.",491,509,0.1,0.16,15,C,D,1579_15
+1579,But the question is whether the decision not to slam on the brakes is wrong.,509,525,0.14,0.1,16,C,D,1579_16
+1579,"I think most people would say it's not wrong; in fact, it might be seen as kind.",525,546,0.22,0.14,17,C,D,1579_17
+1579,"However, if the action led to harm, like an accident, that could be a different story.",546,566,0.1,0.22,18,C,D,1579_18
+1579,"But based on the scenario given, it just says they didn't slam on the brakes, not that they hit the animal.",566,591,0.32,0.1,19,C,D,1579_19
+1579,"So, I don't think this is clearly morally wrong.",591,602,0.38,0.32,20,C,D,1579_20
+1579,"Putting it together, Scenario 1 might involve some questionable intent, but it's not necessarily wrong.",602,623,0.96,0.38,21,C,D,1579_21
+1579,"Scenario 2 doesn't seem wrong because avoiding hitting an animal is generally considered a positive action, unless it leads to another harm, which isn't mentioned here.",623,655,1.0,0.96,22,C,D,1579_22
